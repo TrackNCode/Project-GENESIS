@@ -18,11 +18,11 @@ router = APIRouter(prefix="/viz", tags=["Molecular Visualisation Engine (PyMOL)"
 
 
 class VizRenderRequest(BaseModel):
-    target: str = Field(..., description="Target PDB ID (e.g. 6LU7, 1ERE, 1IEP, 1M17, 1CX2)", example="6LU7")
-    smiles: Optional[str] = Field(None, description="Ligand SMILES string (for conformer overlay)", example="CC(=O)Oc1ccccc1C(=O)O")
+    target: str = Field(..., description="Target PDB ID (e.g. 6LU7, 1ERE, 1IEP, 1M17, 1CX2)", json_schema_extra={"example": "6LU7"})
+    smiles: Optional[str] = Field(None, description="Ligand SMILES string (for conformer overlay)", json_schema_extra={"example": "CC(=O)Oc1ccccc1C(=O)O"})
     docked_pdbqt: Optional[str] = Field(None, description="Docked PDBQT multi-model string from AutoDock Vina")
     pose_mode: int = Field(1, ge=1, le=20, description="Binding mode / pose number to visualize")
-    style: str = Field("cartoon", description="Visual representation style: cartoon, surface, ribbon, sticks", example="cartoon")
+    style: str = Field("cartoon", description="Visual representation style: cartoon, surface, ribbon, sticks", json_schema_extra={"example": "cartoon"})
     pocket_radius: float = Field(4.5, ge=2.0, le=12.0, description="Radius around ligand to select binding pocket residues (Angstroms)")
     contact_cutoff: float = Field(3.5, ge=2.0, le=6.0, description="Maximum distance to detect geometric contacts (Angstroms)")
     width: int = Field(1200, ge=400, le=3840, description="Image render width in pixels")
@@ -32,7 +32,7 @@ class VizRenderRequest(BaseModel):
 
 
 class ContactAnalysisRequest(BaseModel):
-    target: str = Field(..., description="Target PDB ID", example="6LU7")
+    target: str = Field(..., description="Target PDB ID", json_schema_extra={"example": "6LU7"})
     smiles: Optional[str] = Field(None, description="Ligand SMILES")
     docked_pdbqt: Optional[str] = Field(None, description="Docked PDBQT string")
     contact_cutoff: float = Field(3.5, ge=2.0, le=6.0, description="Cutoff distance in Angstroms")

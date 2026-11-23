@@ -19,13 +19,13 @@ class DeNovoGenerationRequest(BaseModel):
 
 
 class ScaffoldHopRequest(BaseModel):
-    lead_smiles: str = Field(..., description="Reference lead molecular SMILES for scaffold hopping", example="CC(=O)Oc1ccccc1C(=O)O")
+    lead_smiles: str = Field(..., description="Reference lead molecular SMILES for scaffold hopping", json_schema_extra={"example": "CC(=O)Oc1ccccc1C(=O)O"})
     target: str = Field("6LU7", description="Target identifier")
     num_candidates: int = Field(5, ge=1, le=30, description="Number of hopped candidates to generate")
 
 
 class CandidateScoreRequest(BaseModel):
-    smiles: str = Field(..., description="Candidate molecule SMILES", example="CC(=O)Nc1ccc(O)cc1")
+    smiles: str = Field(..., description="Candidate molecule SMILES", json_schema_extra={"example": "CC(=O)Nc1ccc(O)cc1"})
     target: str = Field("6LU7", description="Target identifier")
     predicted_pIC50: float = Field(6.5, description="Chemprop D-MPNN predicted binding affinity pIC50")
     epistemic_uncertainty: float = Field(0.25, description="Evidential epistemic uncertainty u")

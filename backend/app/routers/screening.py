@@ -27,8 +27,8 @@ router = APIRouter(prefix="/screening", tags=["Virtual Screening Pipeline (Phase
 
 
 class PreFilterRequest(BaseModel):
-    library_id: Optional[str] = Field(None, description="Curated library ID", example="fda_diversity")
-    custom_smiles: Optional[str] = Field(None, description="Custom SMILES lines", example="CC(=O)Oc1ccccc1C(=O)O Aspirin\nCC(C)Cc1ccc(cc1)C(C)C(=O)O Ibuprofen")
+    library_id: Optional[str] = Field(None, description="Curated library ID", json_schema_extra={"example": "fda_diversity"})
+    custom_smiles: Optional[str] = Field(None, description="Custom SMILES lines", json_schema_extra={"example": "CC(=O)Oc1ccccc1C(=O)O Aspirin\nCC(C)Cc1ccc(cc1)C(C)C(=O)O Ibuprofen"})
     apply_lipinski: bool = Field(True, description="Enforce Lipinski Rule of 5")
     apply_veber: bool = Field(True, description="Enforce Veber oral bioavailability criteria")
     apply_pains: bool = Field(True, description="Filter Pan-Assay Interference (PAINS) motifs")
@@ -37,8 +37,8 @@ class PreFilterRequest(BaseModel):
 
 
 class ScreeningStartRequest(BaseModel):
-    target: str = Field(..., description="Target receptor PDB ID (e.g. 6LU7, 1ERE, 1IEP, 1M17, 1CX2)", example="6LU7")
-    library_id: Optional[str] = Field("fda_diversity", description="Curated library ID", example="fda_diversity")
+    target: str = Field(..., description="Target receptor PDB ID (e.g. 6LU7, 1ERE, 1IEP, 1M17, 1CX2)", json_schema_extra={"example": "6LU7"})
+    library_id: Optional[str] = Field("fda_diversity", description="Curated library ID", json_schema_extra={"example": "fda_diversity"})
     custom_compounds: Optional[str] = Field(None, description="Custom SMILES (one per line)")
     exhaustiveness: int = Field(4, ge=1, le=16, description="Vina search exhaustiveness (4=screening, 8=standard)")
     apply_lipinski: bool = Field(True)
@@ -180,7 +180,7 @@ def get_screening_job_status(job_id: str):
 @router.get("/results/{job_id}", summary="Retrieve ranked virtual screening hits")
 def get_screening_results(
     job_id: str,
-    sort_by: str = Query("affinity", regex="^(affinity|ligand_efficiency|composite_score)$")
+    sort_by: str = Query("affinity", pattern="^(affinity|ligand_efficiency|composite_score)$")
 ):
     """
     Fetch comprehensive ranked screening results table with sorting options.
@@ -254,7 +254,7 @@ def save_screened_candidate(req: SaveCandidateRequest, db: Session = Depends(get
 
 
 @router.get("/export/{job_id}", summary="Download virtual screening report (CSV / JSON)")
-def export_screening_report(job_id: str, format: str = Query("csv", regex="^(csv|json)$")):
+def export_screening_report(job_id: str, format: str = Query("csv", pattern="^(csv|json)$")):
     """Export screening results as structured CSV spreadsheet or JSON dataset."""
     job = get_job_status(job_id)
     if not job:

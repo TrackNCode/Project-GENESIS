@@ -15,20 +15,20 @@ router = APIRouter(prefix="/dock", tags=["Protein & Docking Engine"])
 
 
 class DockingRequest(BaseModel):
-    smiles: str = Field(..., description="Ligand SMILES string to dock", example="CC(=O)Oc1ccccc1C(=O)O")
-    target: str = Field("6LU7", description="Target PDB ID (preset or RCSB ID)", example="6LU7")
+    smiles: str = Field(..., description="Ligand SMILES string to dock", json_schema_extra={"example": "CC(=O)Oc1ccccc1C(=O)O"})
+    target: str = Field("6LU7", description="Target PDB ID (preset or RCSB ID)", json_schema_extra={"example": "6LU7"})
     center_x: Optional[float] = Field(None, description="Grid center X coordinate (defaults to target active site)")
     center_y: Optional[float] = Field(None, description="Grid center Y coordinate (defaults to target active site)")
     center_z: Optional[float] = Field(None, description="Grid center Z coordinate (defaults to target active site)")
-    size_x: Optional[float] = Field(None, description="Grid box size X in Angstroms", example=20.0)
-    size_y: Optional[float] = Field(None, description="Grid box size Y in Angstroms", example=20.0)
-    size_z: Optional[float] = Field(None, description="Grid box size Z in Angstroms", example=20.0)
+    size_x: Optional[float] = Field(None, description="Grid box size X in Angstroms", json_schema_extra={"example": 20.0})
+    size_y: Optional[float] = Field(None, description="Grid box size Y in Angstroms", json_schema_extra={"example": 20.0})
+    size_z: Optional[float] = Field(None, description="Grid box size Z in Angstroms", json_schema_extra={"example": 20.0})
     exhaustiveness: int = Field(4, ge=1, le=32, description="Vina search exhaustiveness (4=fast, 8=standard, 16=thorough)")
     num_modes: int = Field(9, ge=1, le=20, description="Maximum number of binding modes to generate")
 
 
 class TargetPrepRequest(BaseModel):
-    pdb_id: str = Field(..., description="4-letter RCSB Protein Data Bank accession code", example="1IEP")
+    pdb_id: str = Field(..., description="4-letter RCSB Protein Data Bank accession code", json_schema_extra={"example": "1IEP"})
 
 
 @router.get("/targets", summary="List pre-configured therapeutic protein targets")

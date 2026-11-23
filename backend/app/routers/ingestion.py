@@ -18,13 +18,13 @@ router = APIRouter(prefix="/ingestion", tags=["Scientific Data Foundation & Gove
 
 
 class ChEMBLQueryRequest(BaseModel):
-    target_chembl_id: str = Field(..., description="Target ChEMBL ID (e.g. CHEMBL4296597 for Mpro, CHEMBL1862 for ABL)", example="CHEMBL4296597")
+    target_chembl_id: str = Field(..., description="Target ChEMBL ID (e.g. CHEMBL4296597 for Mpro, CHEMBL1862 for ABL)", json_schema_extra={"example": "CHEMBL4296597"})
     activity_type: str = Field("IC50", description="Activity standard type: IC50, Ki, Kd, EC50")
     limit: int = Field(25, ge=5, le=100)
 
 
 class OpenTargetsQueryRequest(BaseModel):
-    ensembl_id: str = Field(..., description="Target Ensembl Gene ID (e.g. ENSG00000091831 for ESR1, ENSG00000148400 for ABL1)", example="ENSG00000091831")
+    ensembl_id: str = Field(..., description="Target Ensembl Gene ID (e.g. ENSG00000091831 for ESR1, ENSG00000148400 for ABL1)", json_schema_extra={"example": "ENSG00000091831"})
 
 
 class TDCLoadRequest(BaseModel):
