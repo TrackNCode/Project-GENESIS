@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  genesis:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: project-genesis:latest
+    container_name: genesis-app
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./backend/data:/app/backend/data
+      - ./genesis_dev.db:/app/genesis_dev.db
+    restart: unless-stopped

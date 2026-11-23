@@ -1,0 +1,23 @@
+================================================================================
+PyMOL Open-Source License & Trademark Notification
+Project GENESIS Integration
+================================================================================
+Timestamp: 2026-11-20T16:20:00+05:30
+
+Notice to Users:
+PyMOL is a molecular graphics system with an open-source core maintained by 
+Schrödinger, LLC.
+
+1. Open-Source License:
+The open-source code for PyMOL is made available under a BSD-like open-source 
+license. Review the official terms and repository at:
+https://github.com/schrodinger/pymol-open-source
+and https://www.pymol.org/
+
+2. Trademark:
+"PyMOL" is a trademark of Schrödinger, LLC. Use of the PyMOL name within 
+Project GENESIS complies with standard open-source attribution guidelines.
+
+3. Citation:
+The PyMOL Molecular Graphics System, Version 3.1.0, Schrödinger, LLC.
+================================================================================
