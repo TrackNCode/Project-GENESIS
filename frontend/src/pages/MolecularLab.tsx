@@ -154,6 +154,80 @@ const MolecularLab: React.FC = () => {
   const [pymolResult, setPymolResult] = useState<PyMOLResult | null>(null);
   const [dockingPymolResult, setDockingPymolResult] = useState<PyMOLResult | null>(null);
 
+  // Instant Ligand Rendering State
+  const [instantSvg, setInstantSvg] = useState<string>('');
+  const [instantProps, setInstantProps] = useState<MolecularProperties | null>(null);
+  const [instantConformer, setInstantConformer] = useState<ConformerData | null>(null);
+  const [instantLoading, setInstantLoading] = useState<boolean>(false);
+  const [instantPreviewMode, setInstantPreviewMode] = useState<'2d' | '3d'>('2d');
+
+  // Instant Ligand Rendering Function
+  const fetchInstantLigand = async (targetSmiles: string) => {
+    const trimmed = targetSmiles.trim();
+    if (!trimmed) {
+      setInstantSvg('');
+      setInstantProps(null);
+      setInstantConformer(null);
+      return;
+    }
+
+    setInstantLoading(true);
+    try {
+      const svgPromise = fetch(`${API_BASE}/chem/structure_2d`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ smiles: trimmed }),
+      })
+        .then((res) => (res.ok ? res.text() : ''))
+        .then((svgText) => setInstantSvg(svgText))
+        .catch(() => setInstantSvg(''));
+
+      const propsPromise = fetch(`${API_BASE}/chem/properties`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ smiles: trimmed }),
+      })
+        .then((res) => (res.ok ? res.json() : null))
+        .then((p) => {
+          if (p) {
+            setInstantProps(p);
+            setProperties(p);
+          }
+        })
+        .catch(() => {});
+
+      const confPromise = fetch(`${API_BASE}/chem/conformer_3d`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ smiles: trimmed, optimize: true }),
+      })
+        .then((res) => (res.ok ? res.json() : null))
+        .then((c) => {
+          if (c) {
+            setInstantConformer(c);
+            setConformer(c);
+          }
+        })
+        .catch(() => {});
+
+      await Promise.all([svgPromise, propsPromise, confPromise]);
+    } catch {
+      // Silent catch
+    } finally {
+      setInstantLoading(false);
+    }
+  };
+
+  // Instant Debounce on smiles change
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (smiles && smiles.trim().length > 0) {
+        fetchInstantLigand(smiles);
+      }
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [smiles]);
+
   useEffect(() => {
     // Check health
     fetch(`${API_BASE}/health`)
@@ -449,14 +523,20 @@ const MolecularLab: React.FC = () => {
 
       {/* Ligand Input & Presets Bar */}
       <div style={{ backgroundColor: '#161b22', padding: '16px', borderRadius: '8px', border: '1px solid #30363d', marginBottom: '20px' }}>
-        <div style={{ marginBottom: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <label style={{ fontSize: '13px', color: '#8b949e' }}>Ligand SMILES String:</label>
-          <div style={{ display: 'flex', gap: '6px' }}>
-            {presets.slice(0, 5).map((p) => (
+        <div style={{ marginBottom: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <label style={{ fontSize: '13px', color: '#8b949e', fontWeight: 'bold' }}>Ligand SMILES String:</label>
+            <span style={{ fontSize: '11px', color: '#00ffff', backgroundColor: '#00ffff22', padding: '2px 6px', borderRadius: '4px' }}>
+              ⚡ Instant Live Render
+            </span>
+          </div>
+          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+            {presets.slice(0, 7).map((p) => (
               <button
                 key={p.name}
                 onClick={() => {
                   setSmiles(p.smiles);
+                  fetchInstantLigand(p.smiles);
                   if (engineMode === 'cheminformatics') handleAnalyzeChem(p.smiles);
                 }}
                 style={{
@@ -467,6 +547,7 @@ const MolecularLab: React.FC = () => {
                   borderRadius: '4px',
                   fontSize: '11px',
                   cursor: 'pointer',
+                  fontWeight: smiles === p.smiles ? 'bold' : 'normal',
                 }}
               >
                 {p.name}
@@ -479,7 +560,9 @@ const MolecularLab: React.FC = () => {
           <input
             type="text"
             value={smiles}
-            onChange={(e) => setSmiles(e.target.value)}
+            onChange={(e) => {
+              setSmiles(e.target.value);
+            }}
             placeholder="e.g. CC(=O)Oc1ccccc1C(=O)O"
             style={{
               flex: 1,
@@ -511,6 +594,155 @@ const MolecularLab: React.FC = () => {
             </button>
           )}
         </div>
+
+        {/* Instant Ligand Live Rendering Panel */}
+        {smiles.trim().length > 0 && (
+          <div
+            style={{
+              backgroundColor: '#0d1117',
+              border: '1px solid #30363d',
+              borderRadius: '8px',
+              padding: '14px 16px',
+              marginTop: '14px',
+              display: 'flex',
+              gap: '20px',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
+          >
+            {/* Left: 2D Vector / 3D WebGL Toggle & Visualizer */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div style={{ display: 'flex', gap: '4px', marginBottom: '8px' }}>
+                <button
+                  onClick={() => setInstantPreviewMode('2d')}
+                  style={{
+                    padding: '3px 8px',
+                    fontSize: '11px',
+                    borderRadius: '4px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    backgroundColor: instantPreviewMode === '2d' ? '#00ffff' : '#21262d',
+                    color: instantPreviewMode === '2d' ? '#000' : '#8b949e',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  2D Structure
+                </button>
+                <button
+                  onClick={() => setInstantPreviewMode('3d')}
+                  style={{
+                    padding: '3px 8px',
+                    fontSize: '11px',
+                    borderRadius: '4px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    backgroundColor: instantPreviewMode === '3d' ? '#00ffff' : '#21262d',
+                    color: instantPreviewMode === '3d' ? '#000' : '#8b949e',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  3D Conformer
+                </button>
+              </div>
+
+              <div
+                style={{
+                  width: '200px',
+                  height: '150px',
+                  backgroundColor: '#161b22',
+                  borderRadius: '6px',
+                  border: '1px solid #30363d',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  overflow: 'hidden',
+                  position: 'relative',
+                }}
+              >
+                {instantLoading ? (
+                  <div style={{ fontSize: '11px', color: '#00ffff' }}>Rendering Live...</div>
+                ) : instantPreviewMode === '2d' ? (
+                  instantSvg ? (
+                    <div
+                      dangerouslySetInnerHTML={{ __html: instantSvg }}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        filter: 'invert(0.9) hue-rotate(180deg)',
+                      }}
+                    />
+                  ) : (
+                    <span style={{ fontSize: '11px', color: '#8b949e' }}>Generating 2D...</span>
+                  )
+                ) : instantConformer?.mol_block ? (
+                  <MolecularViewer3D ligandPdb={instantConformer.mol_block} height="150px" />
+                ) : (
+                  <span style={{ fontSize: '11px', color: '#8b949e' }}>Generating 3D...</span>
+                )}
+              </div>
+            </div>
+
+            {/* Right: Instant Physicochemical Properties */}
+            <div style={{ flex: 1, minWidth: '300px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '6px' }}>
+                <span style={{ fontSize: '13px', fontWeight: 'bold', color: '#00ffff' }}>
+                  ⚡ Instant Molecular Properties
+                </span>
+                {instantProps && (
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      padding: '2px 8px',
+                      borderRadius: '10px',
+                      backgroundColor: instantProps.lipinski_pass ? '#00ff8822' : '#ff444422',
+                      color: instantProps.lipinski_pass ? '#00ff88' : '#ff4444',
+                      border: `1px solid ${instantProps.lipinski_pass ? '#00ff88' : '#ff4444'}`,
+                      fontWeight: 500,
+                    }}
+                  >
+                    {instantProps.lipinski_pass ? '✓ Lipinski Pass (Drug-Like)' : `⚠ ${instantProps.lipinski_violations} Lipinski Violations`}
+                  </span>
+                )}
+              </div>
+
+              {instantProps ? (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(115px, 1fr))', gap: '8px' }}>
+                  <div style={{ backgroundColor: '#161b22', padding: '6px 10px', borderRadius: '4px', border: '1px solid #30363d' }}>
+                    <div style={{ fontSize: '10px', color: '#8b949e' }}>Formula</div>
+                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}>{instantProps.formula}</div>
+                  </div>
+                  <div style={{ backgroundColor: '#161b22', padding: '6px 10px', borderRadius: '4px', border: '1px solid #30363d' }}>
+                    <div style={{ fontSize: '10px', color: '#8b949e' }}>Molecular Weight</div>
+                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#00ffff' }}>{instantProps.molecular_weight.toFixed(1)} g/mol</div>
+                  </div>
+                  <div style={{ backgroundColor: '#161b22', padding: '6px 10px', borderRadius: '4px', border: '1px solid #30363d' }}>
+                    <div style={{ fontSize: '10px', color: '#8b949e' }}>Crippen LogP</div>
+                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: instantProps.logp <= 5 ? '#00ff88' : '#ff8888' }}>{instantProps.logp.toFixed(2)}</div>
+                  </div>
+                  <div style={{ backgroundColor: '#161b22', padding: '6px 10px', borderRadius: '4px', border: '1px solid #30363d' }}>
+                    <div style={{ fontSize: '10px', color: '#8b949e' }}>Polar Surface (TPSA)</div>
+                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}>{instantProps.tpsa.toFixed(1)} Å²</div>
+                  </div>
+                  <div style={{ backgroundColor: '#161b22', padding: '6px 10px', borderRadius: '4px', border: '1px solid #30363d' }}>
+                    <div style={{ fontSize: '10px', color: '#8b949e' }}>HBD / HBA</div>
+                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}>{instantProps.hbd} / {instantProps.hba}</div>
+                  </div>
+                  <div style={{ backgroundColor: '#161b22', padding: '6px 10px', borderRadius: '4px', border: '1px solid #30363d' }}>
+                    <div style={{ fontSize: '10px', color: '#8b949e' }}>Rotatable Bonds</div>
+                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}>{instantProps.rotatable_bonds}</div>
+                  </div>
+                </div>
+              ) : (
+                <div style={{ fontSize: '12px', color: '#8b949e' }}>
+                  {instantLoading ? 'Calculating properties...' : 'Type a valid SMILES string above to render.'}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       {error && (
@@ -619,6 +851,53 @@ const MolecularLab: React.FC = () => {
               </button>
             </div>
           </div>
+
+          {/* Pre-Dock Target & Ligand 3D Preview (Shown before docking execution) */}
+          {!dockingResult && (
+            <div style={{ backgroundColor: '#161b22', padding: '16px', borderRadius: '8px', border: '1px solid #30363d', marginBottom: '20px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
+                <div>
+                  <h4 style={{ margin: 0, color: '#00ffff', fontSize: '15px' }}>
+                    🌐 Target Receptor & Ligand 3D Preview ({selectedTarget} - {currentTargetObj?.name})
+                  </h4>
+                  <p style={{ margin: '2px 0 0', color: '#8b949e', fontSize: '12px' }}>
+                    Pre-docking preview of active site receptor pocket with live ligand conformer. Click &apos;🚀 Execute Vina Docking&apos; to run conformational simulation.
+                  </p>
+                </div>
+                <div style={{ display: 'flex', gap: '6px' }}>
+                  {(['cartoon', 'surface', 'stick'] as const).map((style) => (
+                    <button
+                      key={style}
+                      onClick={() => setViewerStyle(style)}
+                      style={{
+                        padding: '4px 8px',
+                        borderRadius: '4px',
+                        border: 'none',
+                        fontSize: '11px',
+                        cursor: 'pointer',
+                        backgroundColor: viewerStyle === style ? '#00ffff' : '#21262d',
+                        color: viewerStyle === style ? '#000' : '#c9d1d9',
+                        fontWeight: viewerStyle === style ? 'bold' : 'normal',
+                        textTransform: 'capitalize',
+                      }}
+                    >
+                      {style}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <MolecularViewer3D
+                proteinPdb={proteinPdb}
+                ligandPdb={instantConformer?.mol_block}
+                styleMode={viewerStyle}
+                height="450px"
+              />
+              <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#8b949e', flexWrap: 'wrap', gap: '6px' }}>
+                <span>🎨 Spectrum: Target Receptor ({selectedTarget})</span>
+                <span>🟢 Green Sticks: Live Ligand Conformer ({instantProps?.formula || 'Ligand'})</span>
+              </div>
+            </div>
+          )}
 
           {/* Results: 3D Visualization & Binding Poses */}
           {dockingResult && (

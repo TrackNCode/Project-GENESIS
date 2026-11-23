@@ -56,7 +56,8 @@ const MolecularViewer3D: React.FC<MolecularViewer3DProps> = ({
     // 2. Add Ligand Model if provided
     if (ligandPdb && ligandPdb.trim().length > 0) {
       const ligandModelIdx = proteinPdb ? 1 : 0;
-      viewer.addModel(ligandPdb, 'pdb');
+      const format = (ligandPdb.includes('M  END') || ligandPdb.includes('V2000') || ligandPdb.includes('V3000')) ? 'mol' : 'pdb';
+      viewer.addModel(ligandPdb, format);
       hasModel = true;
 
       viewer.setStyle(
