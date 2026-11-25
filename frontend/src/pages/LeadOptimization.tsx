@@ -146,32 +146,32 @@ const LeadOptimization: React.FC = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto pb-16">
       {/* Header Banner */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl bg-slate-900/80 border border-teal-500/30 backdrop-blur shadow-xl shadow-teal-950/20">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
         <div>
           <div className="flex items-center gap-3">
-            <div className="w-3 h-3 rounded-full bg-teal-400 animate-ping" />
-            <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-teal-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent">
+            <div className="w-3 h-3 rounded-full bg-teal-600" />
+            <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">
               Lead Optimisation & AI Prediction Studio
             </h1>
-            <span className="px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/30">
+            <span className="px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider rounded-full bg-teal-50 text-teal-800 border border-teal-200 font-bold">
               Phase 6
             </span>
           </div>
-          <p className="text-slate-400 text-sm mt-1">
+          <p className="text-slate-500 text-sm mt-1">
             Target-Specific QSAR Modeling (pIC50) • Comprehensive ADME Pharmacokinetics • In Silico Toxicity & Bioisosteric Design
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <div className="px-3 py-1.5 rounded-lg bg-slate-800/90 border border-slate-700/60 text-xs text-slate-300 flex items-center gap-2">
+          <div className="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-700 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-teal-400" />
             <span>QSAR Ridge + RF Ensemble</span>
           </div>
-          <div className="px-3 py-1.5 rounded-lg bg-slate-800/90 border border-slate-700/60 text-xs text-slate-300 flex items-center gap-2">
+          <div className="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-700 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-cyan-400" />
             <span>5-CYP450 Metabolism Matrix</span>
           </div>
-          <div className="px-3 py-1.5 rounded-lg bg-slate-800/90 border border-slate-700/60 text-xs text-slate-300 flex items-center gap-2">
+          <div className="px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-700 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-purple-400" />
             <span>hERG & Ames Toxicity Engine</span>
           </div>
@@ -193,8 +193,8 @@ const LeadOptimization: React.FC = () => {
       )}
 
       {/* Preset Leads Selector */}
-      <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
-        <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">
+      <div className="p-4 rounded-2xl bg-white border border-slate-200">
+        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-2">
           Select Benchmark Therapeutic Lead or Inspect Custom SMILES:
         </label>
         <div className="grid grid-cols-2 md:grid-cols-6 gap-2">
@@ -204,35 +204,35 @@ const LeadOptimization: React.FC = () => {
               onClick={() => selectPreset(p)}
               className={`p-2.5 rounded-xl border text-left transition-all ${
                 selectedLeadName === p.name
-                  ? 'bg-teal-950/50 border-teal-400 text-white shadow-md shadow-teal-950/30'
-                  : 'bg-slate-800/40 border-slate-700/60 text-slate-300 hover:bg-slate-800'
+                  ? 'bg-teal-50 border-teal-600 text-teal-900 font-bold shadow-sm'
+                  : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100'
               }`}
             >
               <div className="font-bold text-xs truncate text-teal-300">{p.name}</div>
-              <div className="text-[10px] text-slate-400 truncate">{p.indication}</div>
+              <div className="text-[10px] text-slate-500 truncate">{p.indication}</div>
             </button>
           ))}
         </div>
       </div>
 
       {/* Input Form */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 p-5 rounded-2xl bg-slate-900/60 border border-slate-800">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 p-5 rounded-2xl bg-white border border-slate-200">
         <div className="lg:col-span-3">
-          <label className="text-xs font-semibold text-slate-400 block mb-1">Lead Molecule SMILES String</label>
+          <label className="text-xs font-semibold text-slate-500 block mb-1">Lead Molecule SMILES String</label>
           <input
             type="text"
             value={smiles}
             onChange={(e) => setSmiles(e.target.value)}
-            className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs font-mono text-cyan-300 focus:outline-none focus:border-teal-400"
+            className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs font-mono text-teal-700 focus:outline-none focus:border-teal-400"
           />
         </div>
         <div>
-          <label className="text-xs font-semibold text-slate-400 block mb-1">Target Receptor</label>
+          <label className="text-xs font-semibold text-slate-500 block mb-1">Target Receptor</label>
           <div className="flex gap-2">
             <select
               value={target}
               onChange={(e) => setTarget(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-xs text-white focus:outline-none"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-white focus:outline-none"
             >
               {TARGET_OPTIONS.map((t) => (
                 <option key={t.id} value={t.id}>
@@ -243,7 +243,7 @@ const LeadOptimization: React.FC = () => {
             <button
               onClick={() => handleAnalyzeLead(smiles, target)}
               disabled={loading}
-              className="px-5 py-3 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 text-slate-950 font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap shadow-lg shadow-teal-500/20 disabled:opacity-50"
+              className="px-5 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold shadow-sm"
             >
               {loading ? (
                 <span className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin" />
@@ -261,7 +261,7 @@ const LeadOptimization: React.FC = () => {
           {/* Top Row: MPO Desirability & QSAR Bioactivity */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Multi-Property Objective (MPO) Desirability Card */}
-            <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-xl space-y-4">
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xl space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-base font-bold text-white flex items-center gap-2">
                   <span>MPO Desirability Score</span>
@@ -276,57 +276,57 @@ const LeadOptimization: React.FC = () => {
                 <div className="text-5xl font-black font-mono tracking-tight bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
                   {mpo?.mpo_score}
                 </div>
-                <div className="text-xs text-slate-400 mt-1">Composite Desirability (0.00 - 1.00)</div>
+                <div className="text-xs text-slate-500 mt-1">Composite Desirability (0.00 - 1.00)</div>
               </div>
 
               {/* 5-Dimensional Desirability Breakdown */}
               <div className="space-y-2 text-xs">
                 <div>
-                  <div className="flex justify-between text-[11px] text-slate-300 mb-0.5">
+                  <div className="flex justify-between text-[11px] text-slate-700 mb-0.5">
                     <span>Target Potency</span>
-                    <span className="font-mono text-cyan-300">{(mpo?.potency_desirability * 100).toFixed(0)}%</span>
+                    <span className="font-mono text-teal-700">{(mpo?.potency_desirability * 100).toFixed(0)}%</span>
                   </div>
-                  <div className="h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                  <div className="h-1.5 rounded-full bg-slate-100 overflow-hidden">
                     <div className="h-full bg-cyan-400" style={{ width: `${mpo?.potency_desirability * 100}%` }} />
                   </div>
                 </div>
 
                 <div>
-                  <div className="flex justify-between text-[11px] text-slate-300 mb-0.5">
+                  <div className="flex justify-between text-[11px] text-slate-700 mb-0.5">
                     <span>Lipophilicity (cLogP)</span>
                     <span className="font-mono text-teal-300">{(mpo?.lipophilicity_desirability * 100).toFixed(0)}%</span>
                   </div>
-                  <div className="h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                  <div className="h-1.5 rounded-full bg-slate-100 overflow-hidden">
                     <div className="h-full bg-teal-400" style={{ width: `${mpo?.lipophilicity_desirability * 100}%` }} />
                   </div>
                 </div>
 
                 <div>
-                  <div className="flex justify-between text-[11px] text-slate-300 mb-0.5">
+                  <div className="flex justify-between text-[11px] text-slate-700 mb-0.5">
                     <span>Polar Surface Area (TPSA)</span>
                     <span className="font-mono text-emerald-300">{(mpo?.polar_surface_desirability * 100).toFixed(0)}%</span>
                   </div>
-                  <div className="h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                  <div className="h-1.5 rounded-full bg-slate-100 overflow-hidden">
                     <div className="h-full bg-emerald-400" style={{ width: `${mpo?.polar_surface_desirability * 100}%` }} />
                   </div>
                 </div>
 
                 <div>
-                  <div className="flex justify-between text-[11px] text-slate-300 mb-0.5">
+                  <div className="flex justify-between text-[11px] text-slate-700 mb-0.5">
                     <span>Cardio & Genetic Safety</span>
-                    <span className="font-mono text-purple-300">{(mpo?.safety_desirability * 100).toFixed(0)}%</span>
+                    <span className="font-mono text-slate-700">{(mpo?.safety_desirability * 100).toFixed(0)}%</span>
                   </div>
-                  <div className="h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                  <div className="h-1.5 rounded-full bg-slate-100 overflow-hidden">
                     <div className="h-full bg-purple-400" style={{ width: `${mpo?.safety_desirability * 100}%` }} />
                   </div>
                 </div>
 
                 <div>
-                  <div className="flex justify-between text-[11px] text-slate-300 mb-0.5">
+                  <div className="flex justify-between text-[11px] text-slate-700 mb-0.5">
                     <span>ADME Permeability & Metabolic Stability</span>
                     <span className="font-mono text-amber-300">{(mpo?.adme_desirability * 100).toFixed(0)}%</span>
                   </div>
-                  <div className="h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                  <div className="h-1.5 rounded-full bg-slate-100 overflow-hidden">
                     <div className="h-full bg-amber-400" style={{ width: `${mpo?.adme_desirability * 100}%` }} />
                   </div>
                 </div>
@@ -334,30 +334,30 @@ const LeadOptimization: React.FC = () => {
 
               <button
                 onClick={() => handleSaveToCandidates(smiles, selectedLeadName, qsar?.predicted_pIC50 || 7.0)}
-                className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-slate-200 transition-all flex items-center justify-center gap-2"
+                className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-700 border border-slate-200 text-xs font-semibold text-slate-800 transition-all flex items-center justify-center gap-2"
               >
                 <span>💾 Save Lead to Project Candidates DB</span>
               </button>
             </div>
 
             {/* QSAR Bioactivity Prediction Card */}
-            <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-xl space-y-4">
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xl space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-base font-bold text-white flex items-center gap-2">
                   <span>QSAR Bioactivity Engine</span>
                 </h3>
-                <span className="text-xs px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800 font-mono">
+                <span className="text-xs px-2.5 py-0.5 rounded-full bg-cyan-950 text-teal-700 border border-cyan-800 font-mono">
                   {target}
                 </span>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800/80 space-y-3">
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-slate-400">Predicted pIC50 (-log₁₀[IC50]):</span>
-                  <span className="text-2xl font-black font-mono text-cyan-400">{qsar?.predicted_pIC50}</span>
+                  <span className="text-xs text-slate-500">Predicted pIC50 (-log₁₀[IC50]):</span>
+                  <span className="text-2xl font-black font-mono text-teal-700">{qsar?.predicted_pIC50}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-slate-400">Estimated IC50:</span>
+                  <span className="text-xs text-slate-500">Estimated IC50:</span>
                   <span className="text-sm font-bold font-mono text-white">
                     {qsar?.predicted_IC50_nM < 1000
                       ? `${qsar?.predicted_IC50_nM} nM`
@@ -365,7 +365,7 @@ const LeadOptimization: React.FC = () => {
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-slate-400">Activity Classification:</span>
+                  <span className="text-xs text-slate-500">Activity Classification:</span>
                   <span className="px-2 py-0.5 rounded text-xs font-bold bg-emerald-950 text-emerald-300 border border-emerald-800">
                     {qsar?.activity_class}
                   </span>
@@ -373,9 +373,9 @@ const LeadOptimization: React.FC = () => {
               </div>
 
               {/* Applicability Domain (AD) Check */}
-              <div className="p-3.5 rounded-xl bg-slate-950/40 border border-slate-800 text-xs space-y-1.5">
+              <div className="p-3.5 rounded-xl bg-slate-50/40 border border-slate-200 text-xs space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <span className="font-semibold text-slate-300">Applicability Domain (AD)</span>
+                  <span className="font-semibold text-slate-700">Applicability Domain (AD)</span>
                   <span
                     className={`font-mono text-[11px] px-2 py-0.5 rounded ${
                       qsar?.applicability_domain?.in_domain
@@ -386,20 +386,20 @@ const LeadOptimization: React.FC = () => {
                     {qsar?.applicability_domain?.in_domain ? '✓ In Domain' : '⚠ Out of Domain'}
                   </span>
                 </div>
-                <div className="text-[11px] text-slate-400">
+                <div className="text-[11px] text-slate-500">
                   Nearest Neighbor Tanimoto:{' '}
-                  <span className="text-slate-200 font-mono font-bold">
+                  <span className="text-slate-800 font-mono font-bold">
                     {qsar?.applicability_domain?.max_tanimoto_similarity}
                   </span>
                 </div>
-                <div className="text-[11px] text-slate-400">
-                  Confidence: <span className="text-cyan-300">{qsar?.applicability_domain?.confidence_level}</span>
+                <div className="text-[11px] text-slate-500">
+                  Confidence: <span className="text-teal-700">{qsar?.applicability_domain?.confidence_level}</span>
                 </div>
               </div>
 
               {/* Target Multi-Selectivity Comparison */}
               <div className="space-y-1.5 text-xs">
-                <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
                   Multi-Target Bioactivity Selectivity:
                 </div>
                 <div className="grid grid-cols-2 gap-2">
@@ -410,12 +410,12 @@ const LeadOptimization: React.FC = () => {
                         className={`p-2 rounded-lg border text-[11px] ${
                           tId === target
                             ? 'bg-cyan-950/50 border-cyan-500/50 text-cyan-200'
-                            : 'bg-slate-950/30 border-slate-800/60 text-slate-400'
+                            : 'bg-slate-50/30 border-slate-200/60 text-slate-500'
                         }`}
                       >
                         <div className="font-bold flex justify-between">
                           <span>{tId}</span>
-                          <span className="font-mono text-slate-200">{tData.pIC50}</span>
+                          <span className="font-mono text-slate-800">{tData.pIC50}</span>
                         </div>
                         <div className="truncate text-[10px] text-slate-500">{tData.target_name}</div>
                       </div>
@@ -425,22 +425,22 @@ const LeadOptimization: React.FC = () => {
             </div>
 
             {/* In Silico Toxicity & Safety Card */}
-            <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-xl space-y-4">
+            <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xl space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-base font-bold text-white flex items-center gap-2">
                   <span>Toxicity & Safety Engine</span>
                 </h3>
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-950 text-purple-300 border border-purple-800 font-mono">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-950 text-slate-700 border border-purple-800 font-mono">
                   Score: {tox?.safety_score}/100
                 </span>
               </div>
 
               <div className="space-y-2.5 text-xs">
                 {/* hERG Cardiac Safety */}
-                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center justify-between">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
                   <div>
-                    <div className="font-bold text-slate-200">hERG Cardiac Risk</div>
-                    <div className="text-[11px] text-slate-400">{tox?.cardiac_herg?.herg_risk_class}</div>
+                    <div className="font-bold text-slate-800">hERG Cardiac Risk</div>
+                    <div className="text-[11px] text-slate-500">{tox?.cardiac_herg?.herg_risk_class}</div>
                   </div>
                   <span
                     className={`px-2 py-0.5 rounded text-[11px] font-mono font-bold ${
@@ -454,10 +454,10 @@ const LeadOptimization: React.FC = () => {
                 </div>
 
                 {/* Ames Mutagenicity */}
-                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center justify-between">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
                   <div>
-                    <div className="font-bold text-slate-200">Ames Mutagenicity</div>
-                    <div className="text-[11px] text-slate-400">Bacterial DNA Reactivity</div>
+                    <div className="font-bold text-slate-800">Ames Mutagenicity</div>
+                    <div className="text-[11px] text-slate-500">Bacterial DNA Reactivity</div>
                   </div>
                   <span
                     className={`px-2 py-0.5 rounded text-[11px] font-bold ${
@@ -471,23 +471,23 @@ const LeadOptimization: React.FC = () => {
                 </div>
 
                 {/* DILI Hepatotoxicity */}
-                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center justify-between">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
                   <div>
-                    <div className="font-bold text-slate-200">Hepatotoxicity (DILI)</div>
-                    <div className="text-[11px] text-slate-400">{tox?.hepatotoxicity_dili?.dili_risk_class}</div>
+                    <div className="font-bold text-slate-800">Hepatotoxicity (DILI)</div>
+                    <div className="text-[11px] text-slate-500">{tox?.hepatotoxicity_dili?.dili_risk_class}</div>
                   </div>
-                  <span className="font-mono text-slate-300">p = {tox?.hepatotoxicity_dili?.dili_probability}</span>
+                  <span className="font-mono text-slate-700">p = {tox?.hepatotoxicity_dili?.dili_probability}</span>
                 </div>
 
                 {/* Acute Oral LD50 & GHS Category */}
-                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800 space-y-1">
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
                   <div className="flex justify-between">
-                    <span className="font-bold text-slate-200">Acute Oral LD50:</span>
-                    <span className="font-mono font-bold text-cyan-300">
+                    <span className="font-bold text-slate-800">Acute Oral LD50:</span>
+                    <span className="font-mono font-bold text-teal-700">
                       {tox?.acute_oral_toxicity?.estimated_ld50_mg_kg} mg/kg
                     </span>
                   </div>
-                  <div className="text-[11px] text-slate-400">{tox?.acute_oral_toxicity?.ghs_hazard_category}</div>
+                  <div className="text-[11px] text-slate-500">{tox?.acute_oral_toxicity?.ghs_hazard_category}</div>
                 </div>
 
                 {/* Toxicophoric Alerts */}
@@ -508,22 +508,22 @@ const LeadOptimization: React.FC = () => {
           </div>
 
           {/* Middle Row: ADME Pharmacokinetic Profile */}
-          <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-xl space-y-4">
+          <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xl space-y-4">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-base font-bold text-white flex items-center gap-2">
                   <span>Comprehensive ADME Pharmacokinetics</span>
-                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-800 text-cyan-300 font-mono">
+                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 text-teal-700 font-mono">
                     ADME Score: {adme?.adme_score}/100
                   </span>
                 </h3>
-                <p className="text-xs text-slate-400 mt-0.5">
+                <p className="text-xs text-slate-500 mt-0.5">
                   Gastrointestinal absorption, Caco-2 permeability, blood-brain distribution, and Cytochrome P450 matrix.
                 </p>
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-xs px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300">
+                <span className="text-xs px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700">
                   DDI Risk: <span className="font-bold text-amber-400">{adme?.metabolism?.drug_interaction_risk}</span>
                 </span>
               </div>
@@ -531,22 +531,22 @@ const LeadOptimization: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {/* Absorption */}
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-xs space-y-2">
-                <div className="font-bold text-slate-200 text-sm flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-2">
+                <div className="font-bold text-slate-800 text-sm flex items-center justify-between">
                   <span>1. Absorption</span>
                   <span className="text-emerald-400 font-mono">{adme?.absorption?.hia_percentage}%</span>
                 </div>
-                <div className="text-slate-400">{adme?.absorption?.hia_class}</div>
-                <div className="pt-2 border-t border-slate-800/80 space-y-1 text-[11px]">
+                <div className="text-slate-500">{adme?.absorption?.hia_class}</div>
+                <div className="pt-2 border-t border-slate-200 space-y-1 text-[11px]">
                   <div className="flex justify-between">
                     <span>Caco-2 Permeability:</span>
-                    <span className="font-mono text-slate-200">
+                    <span className="font-mono text-slate-800">
                       {adme?.absorption?.caco2_permeability_10e6_cm_s} × 10⁻⁶ cm/s
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span>P-gp Substrate:</span>
-                    <span className={adme?.absorption?.pgp_substrate ? 'text-amber-400 font-bold' : 'text-slate-400'}>
+                    <span className={adme?.absorption?.pgp_substrate ? 'text-amber-400 font-bold' : 'text-slate-500'}>
                       {adme?.absorption?.pgp_substrate ? 'Yes (Efflux Risk)' : 'No'}
                     </span>
                   </div>
@@ -554,31 +554,31 @@ const LeadOptimization: React.FC = () => {
               </div>
 
               {/* Distribution */}
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-xs space-y-2">
-                <div className="font-bold text-slate-200 text-sm flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-2">
+                <div className="font-bold text-slate-800 text-sm flex items-center justify-between">
                   <span>2. Distribution</span>
-                  <span className="text-cyan-400 font-mono">LogBB: {adme?.distribution?.log_bb}</span>
+                  <span className="text-teal-700 font-mono">LogBB: {adme?.distribution?.log_bb}</span>
                 </div>
-                <div className="text-slate-400">{adme?.distribution?.bbb_class}</div>
-                <div className="pt-2 border-t border-slate-800/80 space-y-1 text-[11px]">
+                <div className="text-slate-500">{adme?.distribution?.bbb_class}</div>
+                <div className="pt-2 border-t border-slate-200 space-y-1 text-[11px]">
                   <div className="flex justify-between">
                     <span>Plasma Protein Binding:</span>
-                    <span className="font-mono text-slate-200">{adme?.distribution?.plasma_protein_binding_pct}%</span>
+                    <span className="font-mono text-slate-800">{adme?.distribution?.plasma_protein_binding_pct}%</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Fraction Unbound (fu):</span>
-                    <span className="font-mono text-slate-200">{adme?.distribution?.fraction_unbound}</span>
+                    <span className="font-mono text-slate-800">{adme?.distribution?.fraction_unbound}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>VDss:</span>
-                    <span className="font-mono text-slate-200">{adme?.distribution?.volume_of_distribution_L_kg} L/kg</span>
+                    <span className="font-mono text-slate-800">{adme?.distribution?.volume_of_distribution_L_kg} L/kg</span>
                   </div>
                 </div>
               </div>
 
               {/* Metabolism (CYP450 Matrix) */}
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-xs space-y-2 md:col-span-1">
-                <div className="font-bold text-slate-200 text-sm flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-2 md:col-span-1">
+                <div className="font-bold text-slate-800 text-sm flex items-center justify-between">
                   <span>3. CYP450 Matrix</span>
                   <span className="text-amber-400 font-mono">{adme?.metabolism?.inhibited_cyp_count} / 5</span>
                 </div>
@@ -590,7 +590,7 @@ const LeadOptimization: React.FC = () => {
                         className={`p-1.5 rounded text-center border text-[10px] ${
                           data.inhibitor
                             ? 'bg-amber-950/60 border-amber-500/50 text-amber-300'
-                            : 'bg-slate-900 border-slate-800 text-slate-400'
+                            : 'bg-white border-slate-200 text-slate-500'
                         }`}
                       >
                         <div className="font-bold">{cyp.replace('CYP', '')}</div>
@@ -598,26 +598,26 @@ const LeadOptimization: React.FC = () => {
                       </div>
                     ))}
                 </div>
-                <div className="text-[11px] text-slate-400 pt-1">
+                <div className="text-[11px] text-slate-500 pt-1">
                   Inhibits major drug-metabolizing Cytochromes: CYP1A2, CYP2C9, CYP2C19, CYP2D6, CYP3A4.
                 </div>
               </div>
 
               {/* Excretion */}
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-xs space-y-2">
-                <div className="font-bold text-slate-200 text-sm flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-2">
+                <div className="font-bold text-slate-800 text-sm flex items-center justify-between">
                   <span>4. Elimination</span>
                   <span className="text-emerald-400 font-mono">t½ ~ {adme?.excretion?.estimated_half_life_hours}h</span>
                 </div>
-                <div className="text-slate-400">{adme?.excretion?.clearance_category}</div>
-                <div className="pt-2 border-t border-slate-800/80 space-y-1 text-[11px]">
+                <div className="text-slate-500">{adme?.excretion?.clearance_category}</div>
+                <div className="pt-2 border-t border-slate-200 space-y-1 text-[11px]">
                   <div className="flex justify-between">
                     <span>Total Clearance:</span>
-                    <span className="font-mono text-slate-200">{adme?.excretion?.clearance_ml_min_kg} mL/min/kg</span>
+                    <span className="font-mono text-slate-800">{adme?.excretion?.clearance_ml_min_kg} mL/min/kg</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Est. Dosing Interval:</span>
-                    <span className="font-mono text-slate-200">
+                    <span className="font-mono text-slate-800">
                       {adme?.excretion?.estimated_half_life_hours > 12 ? 'Once Daily (QD)' : 'Twice Daily (BID)'}
                     </span>
                   </div>
@@ -627,7 +627,7 @@ const LeadOptimization: React.FC = () => {
           </div>
 
           {/* Bottom Row: Matched Molecular Pair (MMP) Bioisostere Recommendations */}
-          <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-xl space-y-4">
+          <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xl space-y-4">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
               <div>
                 <h3 className="text-base font-bold text-white flex items-center gap-2">
@@ -636,14 +636,14 @@ const LeadOptimization: React.FC = () => {
                     {bioisosteres.length} Generated Analogs
                   </span>
                 </h3>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-500">
                   Automated bioisosteric transformations to improve target potency, enhance membrane permeability, or block metabolic liabilities.
                 </p>
               </div>
             </div>
 
             {bioisosteres.length === 0 ? (
-              <div className="p-6 text-center text-xs text-slate-500 rounded-xl bg-slate-950/40 border border-slate-800">
+              <div className="p-6 text-center text-xs text-slate-500 rounded-xl bg-slate-50/40 border border-slate-200">
                 No automatic bioisosteric modifications matched for this specific scaffold.
               </div>
             ) : (
@@ -651,7 +651,7 @@ const LeadOptimization: React.FC = () => {
                 {bioisosteres.map((analog: any, idx: number) => (
                   <div
                     key={idx}
-                    className="p-4 rounded-xl bg-slate-950/70 border border-slate-800/90 space-y-3 hover:border-teal-500/40 transition-all"
+                    className="p-4 rounded-xl bg-slate-50 border border-slate-200/90 space-y-3 hover:border-teal-500/40 transition-all"
                   >
                     <div className="flex items-center justify-between">
                       <span className="font-bold text-teal-300 text-xs">{analog.rule_name}</span>
@@ -659,30 +659,30 @@ const LeadOptimization: React.FC = () => {
                         className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                           analog.delta_mpo >= 0
                             ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
-                            : 'bg-slate-800 text-slate-400'
+                            : 'bg-slate-100 text-slate-500'
                         }`}
                       >
                         ΔMPO: {analog.delta_mpo >= 0 ? `+${analog.delta_mpo}` : analog.delta_mpo}
                       </span>
                     </div>
 
-                    <p className="text-xs text-slate-300">{analog.description}</p>
-                    <div className="text-[11px] text-slate-400 italic">"{analog.hypothesis}"</div>
+                    <p className="text-xs text-slate-700">{analog.description}</p>
+                    <div className="text-[11px] text-slate-500 italic">"{analog.hypothesis}"</div>
 
-                    <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800 font-mono text-[11px] text-cyan-300 truncate">
+                    <div className="p-2.5 rounded-lg bg-white border border-slate-200 font-mono text-[11px] text-teal-700 truncate">
                       {analog.analog_smiles}
                     </div>
 
-                    <div className="grid grid-cols-3 gap-2 text-[11px] text-slate-300 pt-1">
+                    <div className="grid grid-cols-3 gap-2 text-[11px] text-slate-700 pt-1">
                       <div>
                         <span className="text-slate-500 block">pIC50:</span>
-                        <span className="font-bold font-mono text-cyan-400">
+                        <span className="font-bold font-mono text-teal-700">
                           {analog.predicted_pIC50} ({analog.delta_pIC50 >= 0 ? `+${analog.delta_pIC50}` : analog.delta_pIC50})
                         </span>
                       </div>
                       <div>
                         <span className="text-slate-500 block">cLogP:</span>
-                        <span className="font-bold font-mono text-slate-200">
+                        <span className="font-bold font-mono text-slate-800">
                           {analog.predicted_logp} ({analog.delta_logp >= 0 ? `+${analog.delta_logp}` : analog.delta_logp})
                         </span>
                       </div>
@@ -694,7 +694,7 @@ const LeadOptimization: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-800/60">
+                    <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-200/60">
                       <button
                         onClick={() => handleApplyAnalog(analog.analog_smiles, analog.rule_name)}
                         className="px-3 py-1.5 rounded-lg bg-teal-950/60 hover:bg-teal-900 border border-teal-700 text-teal-300 text-xs font-semibold transition-all"
@@ -703,7 +703,7 @@ const LeadOptimization: React.FC = () => {
                       </button>
                       <button
                         onClick={() => handleSaveToCandidates(analog.analog_smiles, `Analog: ${analog.rule_name}`, analog.predicted_pIC50)}
-                        className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-semibold transition-all"
+                        className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-700 border border-slate-200 text-slate-800 text-xs font-semibold transition-all"
                       >
                         💾 Save Candidate
                       </button>

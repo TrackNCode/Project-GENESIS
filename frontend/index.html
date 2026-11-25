@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project GENESIS - Autonomous AI Drug Discovery Platform</title>
+    <title>Project GENESIS | Clinical Pharmacology & Biomolecular Simulation Suite</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -11,13 +11,28 @@
         theme: {
           extend: {
             colors: {
+              med: {
+                red: '#dc2626',
+                redDark: '#991b1b',
+                redLight: '#fef2f2',
+                teal: '#0d9488',
+                tealDark: '#0f766e',
+                tealLight: '#f0fdfa',
+                sky: '#0284c7',
+                skyDark: '#0369a1',
+                skyLight: '#f0f9ff',
+                slate: '#0f172a',
+                card: '#ffffff',
+                border: '#e2e8f0',
+                surface: '#f8fafc',
+              },
               genesis: {
-                bg: '#0b0e14',
-                surface: '#131823',
-                card: '#161d2b',
-                border: '#232d42',
-                cyan: '#00f0ff',
-                accent: '#6366f1',
+                bg: '#f8fafc',
+                surface: '#ffffff',
+                card: '#ffffff',
+                border: '#e2e8f0',
+                cyan: '#0284c7',
+                accent: '#0d9488',
               }
             }
           }
@@ -33,31 +48,31 @@
     <style>
       body {
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        background-color: #0b0e14;
-        color: #e2e8f0;
+        background-color: #f8fafc;
+        color: #0f172a;
         margin: 0;
       }
       code, pre, .font-mono {
         font-family: 'JetBrains Mono', monospace;
       }
-      /* Custom scrollbar */
+      /* Clean Medical Scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #0b0e14;
+        background: #f1f5f9;
       }
       ::-webkit-scrollbar-thumb {
-        background: #232d42;
+        background: #cbd5e1;
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #374151;
+        background: #94a3b8;
       }
     </style>
   </head>
-  <body class="bg-[#0b0e14] text-gray-200 antialiased min-h-screen">
+  <body class="bg-slate-50 text-slate-900 antialiased min-h-screen">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

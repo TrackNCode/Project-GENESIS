@@ -131,23 +131,23 @@ const IterativeDiscovery: React.FC = () => {
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
       {/* Header */}
-      <div className="bg-gradient-to-r from-gray-900 via-indigo-950 to-gray-900 border border-indigo-700/50 rounded-xl p-6 shadow-2xl">
+      <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-3">
               <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 text-xs font-mono font-bold rounded-full border border-cyan-500/40">
                 MILESTONE 5 & 6
               </span>
-              <h1 className="text-2xl font-black tracking-wide text-white">
+              <h1 className="text-2xl font-black tracking-wide text-slate-900">
                 Closed-Loop Iterative Discovery & Lineage Studio
               </h1>
             </div>
-            <p className="text-gray-300 text-sm mt-1">
+            <p className="text-slate-700 text-sm mt-1">
               Autonomous multi-objective drug discovery: <code className="text-cyan-400">GENERATE → SCREEN → DOCK → PREDICT → EVALUATE → ANALYSE → LEARN → OPTIMISE</code>
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+            <span className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-teal-50 text-teal-800 border border-teal-200">
               <span className="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-pulse" />
               RTX 3060 CUDA Active
             </span>
@@ -158,13 +158,13 @@ const IterativeDiscovery: React.FC = () => {
       {/* Main Grid: Launcher + Stats */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Launcher Config Card */}
-        <div className="bg-gray-800/90 border border-gray-700 rounded-xl p-5 shadow-lg space-y-4">
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">
-            <span className="text-indigo-400">🚀</span> Campaign Configuration
+        <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-lg space-y-4">
+          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span className="text-teal-700">🚀</span> Campaign Configuration
           </h2>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-400 uppercase mb-1">Target Receptor</label>
+            <label className="block text-xs font-semibold text-slate-500 uppercase mb-1">Target Receptor</label>
             <select
               value={selectedTarget.pdb_id}
               onChange={(e) => {
@@ -173,7 +173,7 @@ const IterativeDiscovery: React.FC = () => {
                 setLeadSmiles(t.defaultLead);
                 setCampaignName(`${t.name} Optimization Campaign`);
               }}
-              className="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-indigo-500"
+              className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-indigo-500"
             >
               {TARGETS.map((t) => (
                 <option key={t.pdb_id} value={t.pdb_id}>
@@ -181,52 +181,52 @@ const IterativeDiscovery: React.FC = () => {
                 </option>
               ))}
             </select>
-            <p className="text-xs text-gray-400 mt-1 italic">{selectedTarget.indication}</p>
+            <p className="text-xs text-slate-500 mt-1 italic">{selectedTarget.indication}</p>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-400 uppercase mb-1">Campaign Name</label>
+            <label className="block text-xs font-semibold text-slate-500 uppercase mb-1">Campaign Name</label>
             <input
               type="text"
               value={campaignName}
               onChange={(e) => setCampaignName(e.target.value)}
-              className="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-indigo-500"
+              className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-indigo-500"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-gray-400 uppercase mb-1">Rounds (Iterations)</label>
+              <label className="block text-xs font-semibold text-slate-500 uppercase mb-1">Rounds (Iterations)</label>
               <input
                 type="number"
                 min={1}
                 max={5}
                 value={totalIterations}
                 onChange={(e) => setTotalIterations(parseInt(e.target.value) || 2)}
-                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-indigo-500"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-400 uppercase mb-1">Per Round</label>
+              <label className="block text-xs font-semibold text-slate-500 uppercase mb-1">Per Round</label>
               <input
                 type="number"
                 min={1}
                 max={6}
                 value={candidatesPerIter}
                 onChange={(e) => setCandidatesPerIter(parseInt(e.target.value) || 3)}
-                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-200 focus:outline-none focus:border-indigo-500"
+                className="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:border-indigo-500"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-gray-400 uppercase mb-1">Initial Lead SMILES</label>
+            <label className="block text-xs font-semibold text-slate-500 uppercase mb-1">Initial Lead SMILES</label>
             <textarea
               rows={2}
               value={leadSmiles}
               onChange={(e) => setLeadSmiles(e.target.value)}
               placeholder="Leave blank for pure de novo generation"
-              className="w-full bg-gray-900 border border-gray-700 rounded-lg p-2 font-mono text-xs text-gray-200 focus:outline-none focus:border-indigo-500"
+              className="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 font-mono text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
             />
           </div>
 
@@ -241,13 +241,13 @@ const IterativeDiscovery: React.FC = () => {
             disabled={running}
             className={`w-full py-3 px-4 rounded-xl font-bold text-sm tracking-wide transition-all shadow-md flex items-center justify-center gap-2 ${
               running
-                ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
-                : 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-indigo-600/30'
+                ? 'bg-gray-700 text-slate-500 cursor-not-allowed'
+                : 'bg-indigo-600 hover:bg-indigo-500 text-slate-900 shadow-indigo-600/30'
             }`}
           >
             {running ? (
               <>
-                <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24">
+                <svg className="animate-spin h-4 w-4 text-slate-900" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
                 </svg>
@@ -262,16 +262,16 @@ const IterativeDiscovery: React.FC = () => {
         {/* Campaign Metrics & System Health */}
         <div className="lg:col-span-2 space-y-6">
           {/* Historical Campaigns Dropdown & Overview */}
-          <div className="bg-gray-800/90 border border-gray-700 rounded-xl p-5 shadow-lg">
+          <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-lg">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
+              <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
                 <span className="text-cyan-400">📊</span> Active Campaign Lineage & Metrics
               </h2>
               {campaignsList.length > 0 && (
                 <select
                   value={activeCampaignId || ''}
                   onChange={(e) => setActiveCampaignId(e.target.value)}
-                  className="bg-gray-900 border border-gray-700 rounded-lg px-3 py-1.5 text-xs text-cyan-300 font-mono focus:outline-none"
+                  className="bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-cyan-300 font-mono focus:outline-none"
                 >
                   {campaignsList.map((c) => (
                     <option key={c.id} value={c.id}>
@@ -284,49 +284,49 @@ const IterativeDiscovery: React.FC = () => {
 
             {campaignDetails ? (
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <div className="bg-gray-900/80 border border-gray-800 rounded-lg p-3 text-center">
-                  <span className="text-xs text-gray-400 uppercase font-semibold">Status</span>
+                <div className="bg-slate-50/80 border border-slate-200 rounded-lg p-3 text-center">
+                  <span className="text-xs text-slate-500 uppercase font-semibold">Status</span>
                   <div className="text-sm font-bold mt-1 text-emerald-400">{campaignDetails.status}</div>
                 </div>
-                <div className="bg-gray-900/80 border border-gray-800 rounded-lg p-3 text-center">
-                  <span className="text-xs text-gray-400 uppercase font-semibold">Total Evaluated</span>
-                  <div className="text-sm font-bold mt-1 text-white">{campaignDetails.candidates?.length || 0} candidates</div>
+                <div className="bg-slate-50/80 border border-slate-200 rounded-lg p-3 text-center">
+                  <span className="text-xs text-slate-500 uppercase font-semibold">Total Evaluated</span>
+                  <div className="text-sm font-bold mt-1 text-slate-900">{campaignDetails.candidates?.length || 0} candidates</div>
                 </div>
-                <div className="bg-gray-900/80 border border-gray-800 rounded-lg p-3 text-center">
-                  <span className="text-xs text-gray-400 uppercase font-semibold">Best Reward</span>
+                <div className="bg-slate-50/80 border border-slate-200 rounded-lg p-3 text-center">
+                  <span className="text-xs text-slate-500 uppercase font-semibold">Best Reward</span>
                   <div className="text-sm font-bold mt-1 text-cyan-300">
                     {campaignDetails.summary_metrics?.best_candidate_reward || 0.0}
                   </div>
                 </div>
-                <div className="bg-gray-900/80 border border-gray-800 rounded-lg p-3 text-center">
-                  <span className="text-xs text-gray-400 uppercase font-semibold">Total Runtime</span>
+                <div className="bg-slate-50/80 border border-slate-200 rounded-lg p-3 text-center">
+                  <span className="text-xs text-slate-500 uppercase font-semibold">Total Runtime</span>
                   <div className="text-sm font-bold mt-1 text-purple-300">
                     {campaignDetails.summary_metrics?.total_elapsed_seconds || 0}s
                   </div>
                 </div>
               </div>
             ) : (
-              <div className="text-sm text-gray-400 py-6 text-center">No campaign selected or active.</div>
+              <div className="text-sm text-slate-500 py-6 text-center">No campaign selected or active.</div>
             )}
 
             {/* Failure Taxonomy Quick Bar */}
             {failureTaxonomy && (
-              <div className="mt-5 pt-4 border-t border-gray-700/60">
-                <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide block mb-2">
+              <div className="mt-5 pt-4 border-t border-slate-200/60">
+                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide block mb-2">
                   System-Wide Failure Taxonomy & Acceptance Rate
                 </span>
                 <div className="grid grid-cols-3 gap-2 text-center text-xs">
                   <div className="bg-emerald-950/40 border border-emerald-800/50 rounded p-2">
                     <span className="text-emerald-400 font-bold">{failureTaxonomy.totals?.accepted || 0}</span>
-                    <span className="block text-gray-400 text-[10px]">ACCEPTED</span>
+                    <span className="block text-slate-500 text-[10px]">ACCEPTED</span>
                   </div>
                   <div className="bg-cyan-950/40 border border-cyan-800/50 rounded p-2">
                     <span className="text-cyan-400 font-bold">{failureTaxonomy.totals?.active_learning_candidates || 0}</span>
-                    <span className="block text-gray-400 text-[10px]">ACTIVE LEARNING</span>
+                    <span className="block text-slate-500 text-[10px]">ACTIVE LEARNING</span>
                   </div>
                   <div className="bg-rose-950/40 border border-rose-800/50 rounded p-2">
                     <span className="text-rose-400 font-bold">{failureTaxonomy.totals?.rejected || 0}</span>
-                    <span className="block text-gray-400 text-[10px]">REJECTED</span>
+                    <span className="block text-slate-500 text-[10px]">REJECTED</span>
                   </div>
                 </div>
               </div>
@@ -337,13 +337,13 @@ const IterativeDiscovery: React.FC = () => {
 
       {/* Candidate Lineage Tree & Evolutionary Comparison */}
       {campaignDetails && campaignDetails.candidates && (
-        <div className="bg-gray-800/90 border border-gray-700 rounded-xl p-6 shadow-lg space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-700/80 pb-4">
+        <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-lg space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 pb-4">
             <div>
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
+              <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
                 <span className="text-amber-400">🧬</span> Molecular Lineage & Pareto Frontier
               </h2>
-              <p className="text-xs text-gray-400 mt-0.5">
+              <p className="text-xs text-slate-500 mt-0.5">
                 Evolutionary lineage showing parent-child derivation across iterations
               </p>
             </div>
@@ -367,12 +367,12 @@ const IterativeDiscovery: React.FC = () => {
                 (c: any) => c.iteration === iter.iteration
               );
               return (
-                <div key={iter.iteration} className="border border-gray-700/60 bg-gray-900/60 rounded-xl p-4 space-y-3">
+                <div key={iter.iteration} className="border border-slate-200/60 bg-slate-50/60 rounded-xl p-4 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="px-3 py-1 bg-indigo-900/60 border border-indigo-700 text-indigo-300 font-bold text-xs rounded-full">
                       Iteration {iter.iteration}
                     </span>
-                    <div className="text-xs text-gray-400 flex gap-4">
+                    <div className="text-xs text-slate-500 flex gap-4">
                       <span>Mean Reward: <strong className="text-cyan-300">{iter.mean_reward}</strong></span>
                       <span>Best Reward: <strong className="text-amber-300">{iter.best_reward}</strong></span>
                       <span>Funnel: {iter.screened_count} screened → {iter.accepted_count} accepted</span>
@@ -385,14 +385,14 @@ const IterativeDiscovery: React.FC = () => {
                         key={cand.id}
                         className={`border rounded-lg p-3 space-y-2 transition-all ${
                           cand.decision === 'ACCEPTED'
-                            ? 'bg-gray-800/90 border-emerald-700/70'
+                            ? 'bg-white border-emerald-700/70'
                             : cand.decision === 'ACTIVE_LEARNING_CANDIDATE'
-                            ? 'bg-gray-800/90 border-cyan-700/70'
-                            : 'bg-gray-800/50 border-rose-900/60 opacity-80'
+                            ? 'bg-white border-cyan-700/70'
+                            : 'bg-white/50 border-rose-900/60 opacity-80'
                         }`}
                       >
                         <div className="flex items-start justify-between gap-2">
-                          <span className="text-[10px] font-mono text-gray-400 truncate">{cand.id}</span>
+                          <span className="text-[10px] font-mono text-slate-500 truncate">{cand.id}</span>
                           <span
                             className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
                               cand.decision === 'ACCEPTED'
@@ -413,7 +413,7 @@ const IterativeDiscovery: React.FC = () => {
                           </div>
                         )}
 
-                        <div className="bg-gray-900 p-2 rounded text-[11px] font-mono text-gray-200 break-all select-all">
+                        <div className="bg-slate-50 p-2 rounded text-[11px] font-mono text-slate-800 break-all select-all">
                           {cand.smiles}
                         </div>
 
@@ -423,32 +423,32 @@ const IterativeDiscovery: React.FC = () => {
                           </div>
                         )}
 
-                        <div className="grid grid-cols-2 gap-1.5 pt-1 text-[11px] border-t border-gray-700/50">
+                        <div className="grid grid-cols-2 gap-1.5 pt-1 text-[11px] border-t border-slate-200/50">
                           <div>
-                            <span className="text-gray-400">Composite:</span>{' '}
+                            <span className="text-slate-500">Composite:</span>{' '}
                             <strong className="text-cyan-300">{cand.composite_reward}</strong>
                           </div>
                           <div>
-                            <span className="text-gray-400">Vina Affinity:</span>{' '}
-                            <strong className="text-gray-200">{cand.vina_affinity_kcal_mol} kcal</strong>
+                            <span className="text-slate-500">Vina Affinity:</span>{' '}
+                            <strong className="text-slate-800">{cand.vina_affinity_kcal_mol} kcal</strong>
                           </div>
                           <div>
-                            <span className="text-gray-400">GNINA CNN:</span>{' '}
-                            <strong className="text-gray-200">{cand.cnn_score}</strong>
+                            <span className="text-slate-500">GNINA CNN:</span>{' '}
+                            <strong className="text-slate-800">{cand.cnn_score}</strong>
                           </div>
                           <div>
-                            <span className="text-gray-400">pIC50:</span>{' '}
-                            <strong className="text-gray-200">{cand.chemprop_pIC50}</strong>
+                            <span className="text-slate-500">pIC50:</span>{' '}
+                            <strong className="text-slate-800">{cand.chemprop_pIC50}</strong>
                           </div>
                           <div>
-                            <span className="text-gray-400">Uncertainty (u):</span>{' '}
-                            <strong className={cand.epistemic_uncertainty > 0.65 ? 'text-amber-400' : 'text-gray-200'}>
+                            <span className="text-slate-500">Uncertainty (u):</span>{' '}
+                            <strong className={cand.epistemic_uncertainty > 0.65 ? 'text-amber-400' : 'text-slate-800'}>
                               {cand.epistemic_uncertainty}
                             </strong>
                           </div>
                           <div>
-                            <span className="text-gray-400">QED / SA:</span>{' '}
-                            <strong className="text-gray-200">{cand.qed} / {cand.sa_score}</strong>
+                            <span className="text-slate-500">QED / SA:</span>{' '}
+                            <strong className="text-slate-800">{cand.qed} / {cand.sa_score}</strong>
                           </div>
                         </div>
                       </div>

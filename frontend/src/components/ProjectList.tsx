@@ -29,19 +29,36 @@ const ProjectList: React.FC = () => {
       });
   }, []);
 
-  if (loading) return <p>Loading projects…</p>;
-  if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
+  if (loading) return <p className="text-xs text-slate-500 font-mono py-4">Querying institutional database...</p>;
+  if (error) return <p className="text-xs text-red-600 bg-red-50 border border-red-200 p-2 rounded">Error loading studies: {error}</p>;
 
   return (
     <div>
-      <h3 className="text-xl font-semibold mb-2" style={{ color: '#00ffff' }}>Projects</h3>
-      <ul className="list-disc list-inside">
-        {projects.map((p) => (
-          <li key={p.id}>
-            <strong>{p.name}</strong> – {p.description || 'No description'} (Created: {new Date(p.created_at).toLocaleDateString()})
-          </li>
-        ))}
-      </ul>
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-xs font-bold text-slate-700 uppercase tracking-wide">Registry Records</span>
+        <span className="text-[10px] font-mono bg-sky-50 text-sky-700 border border-sky-200 px-1.5 py-0.5 rounded font-bold">
+          {projects.length} Registered
+        </span>
+      </div>
+      {projects.length === 0 ? (
+        <p className="text-xs text-slate-400 py-3 text-center bg-white border border-slate-200 rounded-lg">
+          No clinical studies recorded yet.
+        </p>
+      ) : (
+        <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
+          {projects.map((p) => (
+            <div key={p.id} className="p-2.5 bg-white border border-slate-200 rounded-lg text-xs space-y-1">
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-slate-900">{p.name}</span>
+                <span className="text-[10px] text-slate-400 font-mono">
+                  {new Date(p.created_at).toLocaleDateString()}
+                </span>
+              </div>
+              {p.description && <p className="text-slate-600 text-[11px] leading-relaxed">{p.description}</p>}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

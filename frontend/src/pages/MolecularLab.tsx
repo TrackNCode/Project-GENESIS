@@ -437,12 +437,12 @@ const MolecularLab: React.FC = () => {
   };
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '0 auto', color: '#e0e0e0', fontFamily: 'system-ui, sans-serif' }}>
+    <div style={{ maxWidth: '1200px', margin: '0 auto', color: '#0f172a', fontFamily: 'system-ui, sans-serif' }}>
       {/* Header bar */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #30363d', paddingBottom: '14px', marginBottom: '20px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '14px', marginBottom: '20px' }}>
         <div>
-          <h2 style={{ color: '#00ffff', margin: 0, fontSize: '24px' }}>Molecular Lab & Visualisation Engine</h2>
-          <p style={{ margin: '4px 0 0', color: '#8b949e', fontSize: '14px' }}>
+          <h2 style={{ color: '#0d9488', margin: 0, fontSize: '24px' }}>Molecular Lab & Visualisation Engine</h2>
+          <p style={{ margin: '4px 0 0', color: '#475569', fontSize: '14px' }}>
             AutoDock Vina multithreaded docking, Schrödinger PyMOL 3.1.0 open-source engine, and 3Dmol.js viewer.
           </p>
         </div>
@@ -521,11 +521,11 @@ const MolecularLab: React.FC = () => {
       </div>
 
       {/* Ligand Input & Presets Bar */}
-      <div style={{ backgroundColor: '#161b22', padding: '16px', borderRadius: '8px', border: '1px solid #30363d', marginBottom: '20px' }}>
+      <div style={{ backgroundColor: '#ffffff', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
         <div style={{ marginBottom: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <label style={{ fontSize: '13px', color: '#8b949e', fontWeight: 'bold' }}>Ligand SMILES String:</label>
-            <span style={{ fontSize: '11px', color: '#00ffff', backgroundColor: '#00ffff22', padding: '2px 6px', borderRadius: '4px' }}>
+            <label style={{ fontSize: '13px', color: '#475569', fontWeight: 'bold' }}>Ligand SMILES String:</label>
+            <span style={{ fontSize: '11px', color: '#0d9488', backgroundColor: '#f0fdfa', padding: '2px 6px', borderRadius: '4px' }}>
               ⚡ Instant Live Render
             </span>
           </div>
@@ -566,10 +566,10 @@ const MolecularLab: React.FC = () => {
             style={{
               flex: 1,
               padding: '10px 14px',
-              backgroundColor: '#0d1117',
-              border: '1px solid #30363d',
+              backgroundColor: '#f8fafc',
+              border: '1px solid #e2e8f0',
               borderRadius: '6px',
-              color: '#fff',
+              color: '#0f172a',
               fontSize: '14px',
               fontFamily: 'monospace',
             }}
@@ -580,8 +580,7 @@ const MolecularLab: React.FC = () => {
               disabled={loading}
               style={{
                 padding: '10px 20px',
-                backgroundColor: '#00ffff',
-                color: '#000',
+                backgroundColor: '#0d9488', color: '#ffffff',
                 fontWeight: 'bold',
                 border: 'none',
                 borderRadius: '6px',
@@ -598,8 +597,8 @@ const MolecularLab: React.FC = () => {
         {smiles.trim().length > 0 && (
           <div
             style={{
-              backgroundColor: '#0d1117',
-              border: '1px solid #30363d',
+              backgroundColor: '#f8fafc',
+              border: '1px solid #e2e8f0',
               borderRadius: '8px',
               padding: '14px 16px',
               marginTop: '14px',
@@ -648,9 +647,9 @@ const MolecularLab: React.FC = () => {
                 style={{
                   width: '200px',
                   height: '150px',
-                  backgroundColor: '#161b22',
+                  backgroundColor: '#ffffff',
                   borderRadius: '6px',
-                  border: '1px solid #30363d',
+                  border: '1px solid #e2e8f0',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -659,7 +658,7 @@ const MolecularLab: React.FC = () => {
                 }}
               >
                 {instantLoading ? (
-                  <div style={{ fontSize: '11px', color: '#00ffff' }}>Rendering Live...</div>
+                  <div style={{ fontSize: '11px', color: '#0d9488' }}>Rendering Live...</div>
                 ) : instantPreviewMode === '2d' ? (
                   instantSvg ? (
                     <div
@@ -674,12 +673,12 @@ const MolecularLab: React.FC = () => {
                       }}
                     />
                   ) : (
-                    <span style={{ fontSize: '11px', color: '#8b949e' }}>Generating 2D...</span>
+                    <span style={{ fontSize: '11px', color: '#475569' }}>Generating 2D...</span>
                   )
                 ) : instantConformer?.mol_block ? (
                   <MolecularViewer3D ligandPdb={instantConformer.mol_block} height="150px" />
                 ) : (
-                  <span style={{ fontSize: '11px', color: '#8b949e' }}>Generating 3D...</span>
+                  <span style={{ fontSize: '11px', color: '#475569' }}>Generating 3D...</span>
                 )}
               </div>
             </div>
@@ -687,7 +686,7 @@ const MolecularLab: React.FC = () => {
             {/* Right: Instant Physicochemical Properties */}
             <div style={{ flex: 1, minWidth: '300px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '6px' }}>
-                <span style={{ fontSize: '13px', fontWeight: 'bold', color: '#00ffff' }}>
+                <span style={{ fontSize: '13px', fontWeight: 'bold', color: '#0d9488' }}>
                   ⚡ Instant Molecular Properties
                 </span>
                 {instantProps && (
@@ -709,33 +708,33 @@ const MolecularLab: React.FC = () => {
 
               {instantProps ? (
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(115px, 1fr))', gap: '8px' }}>
-                  <div style={{ backgroundColor: '#161b22', padding: '6px 10px', borderRadius: '4px', border: '1px solid #30363d' }}>
-                    <div style={{ fontSize: '10px', color: '#8b949e' }}>Formula</div>
-                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}>{instantProps.formula}</div>
+                  <div style={{ backgroundColor: '#ffffff', padding: '6px 10px', borderRadius: '4px', border: '1px solid #e2e8f0' }}>
+                    <div style={{ fontSize: '10px', color: '#475569' }}>Formula</div>
+                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#0f172a' }}>{instantProps.formula}</div>
                   </div>
-                  <div style={{ backgroundColor: '#161b22', padding: '6px 10px', borderRadius: '4px', border: '1px solid #30363d' }}>
-                    <div style={{ fontSize: '10px', color: '#8b949e' }}>Molecular Weight</div>
-                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#00ffff' }}>{instantProps.molecular_weight.toFixed(1)} g/mol</div>
+                  <div style={{ backgroundColor: '#ffffff', padding: '6px 10px', borderRadius: '4px', border: '1px solid #e2e8f0' }}>
+                    <div style={{ fontSize: '10px', color: '#475569' }}>Molecular Weight</div>
+                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#0d9488' }}>{instantProps.molecular_weight.toFixed(1)} g/mol</div>
                   </div>
-                  <div style={{ backgroundColor: '#161b22', padding: '6px 10px', borderRadius: '4px', border: '1px solid #30363d' }}>
-                    <div style={{ fontSize: '10px', color: '#8b949e' }}>Crippen LogP</div>
+                  <div style={{ backgroundColor: '#ffffff', padding: '6px 10px', borderRadius: '4px', border: '1px solid #e2e8f0' }}>
+                    <div style={{ fontSize: '10px', color: '#475569' }}>Crippen LogP</div>
                     <div style={{ fontSize: '13px', fontWeight: 'bold', color: instantProps.logp <= 5 ? '#00ff88' : '#ff8888' }}>{instantProps.logp.toFixed(2)}</div>
                   </div>
-                  <div style={{ backgroundColor: '#161b22', padding: '6px 10px', borderRadius: '4px', border: '1px solid #30363d' }}>
-                    <div style={{ fontSize: '10px', color: '#8b949e' }}>Polar Surface (TPSA)</div>
-                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}>{instantProps.tpsa.toFixed(1)} Å²</div>
+                  <div style={{ backgroundColor: '#ffffff', padding: '6px 10px', borderRadius: '4px', border: '1px solid #e2e8f0' }}>
+                    <div style={{ fontSize: '10px', color: '#475569' }}>Polar Surface (TPSA)</div>
+                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#0f172a' }}>{instantProps.tpsa.toFixed(1)} Å²</div>
                   </div>
-                  <div style={{ backgroundColor: '#161b22', padding: '6px 10px', borderRadius: '4px', border: '1px solid #30363d' }}>
-                    <div style={{ fontSize: '10px', color: '#8b949e' }}>HBD / HBA</div>
-                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}>{instantProps.hbd} / {instantProps.hba}</div>
+                  <div style={{ backgroundColor: '#ffffff', padding: '6px 10px', borderRadius: '4px', border: '1px solid #e2e8f0' }}>
+                    <div style={{ fontSize: '10px', color: '#475569' }}>HBD / HBA</div>
+                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#0f172a' }}>{instantProps.hbd} / {instantProps.hba}</div>
                   </div>
-                  <div style={{ backgroundColor: '#161b22', padding: '6px 10px', borderRadius: '4px', border: '1px solid #30363d' }}>
-                    <div style={{ fontSize: '10px', color: '#8b949e' }}>Rotatable Bonds</div>
-                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#fff' }}>{instantProps.rotatable_bonds}</div>
+                  <div style={{ backgroundColor: '#ffffff', padding: '6px 10px', borderRadius: '4px', border: '1px solid #e2e8f0' }}>
+                    <div style={{ fontSize: '10px', color: '#475569' }}>Rotatable Bonds</div>
+                    <div style={{ fontSize: '13px', fontWeight: 'bold', color: '#0f172a' }}>{instantProps.rotatable_bonds}</div>
                   </div>
                 </div>
               ) : (
-                <div style={{ fontSize: '12px', color: '#8b949e' }}>
+                <div style={{ fontSize: '12px', color: '#475569' }}>
                   {instantLoading ? 'Calculating properties...' : 'Type a valid SMILES string above to render.'}
                 </div>
               )}
@@ -756,10 +755,10 @@ const MolecularLab: React.FC = () => {
           {/* Target Selector & Docking Parameters */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '20px', marginBottom: '20px' }}>
             {/* Target Card */}
-            <div style={{ backgroundColor: '#161b22', padding: '16px', borderRadius: '8px', border: '1px solid #30363d' }}>
+            <div style={{ backgroundColor: '#ffffff', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                <h3 style={{ margin: 0, color: '#00ffff', fontSize: '16px' }}>Select Therapeutic Target Receptor</h3>
-                <span style={{ fontSize: '12px', color: '#8b949e' }}>PDB Archive Validated</span>
+                <h3 style={{ margin: 0, color: '#0d9488', fontSize: '16px' }}>Select Therapeutic Target Receptor</h3>
+                <span style={{ fontSize: '12px', color: '#475569' }}>PDB Archive Validated</span>
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px', marginBottom: '14px' }}>
@@ -778,35 +777,35 @@ const MolecularLab: React.FC = () => {
                     }}
                   >
                     <div style={{ fontWeight: 'bold', fontSize: '13px' }}>{t.pdb_id}</div>
-                    <div style={{ fontSize: '10px', color: '#8b949e', marginTop: '2px' }}>{t.indication.split('/')[0].trim()}</div>
+                    <div style={{ fontSize: '10px', color: '#475569', marginTop: '2px' }}>{t.indication.split('/')[0].trim()}</div>
                   </button>
                 ))}
               </div>
 
               {currentTargetObj && (
-                <div style={{ backgroundColor: '#0d1117', padding: '12px', borderRadius: '6px', fontSize: '13px' }}>
+                <div style={{ backgroundColor: '#f8fafc', padding: '12px', borderRadius: '6px', fontSize: '13px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
-                    <strong style={{ color: '#fff' }}>{currentTargetObj.name}</strong>
+                    <strong style={{ color: '#0f172a' }}>{currentTargetObj.name}</strong>
                     <span style={{ color: '#00ff88' }}>{currentTargetObj.resolution_angstrom} Å Resolution</span>
                   </div>
-                  <div style={{ color: '#8b949e', marginBottom: '6px' }}>{currentTargetObj.organism} • Indication: {currentTargetObj.indication}</div>
-                  <p style={{ margin: 0, color: '#c9d1d9', fontSize: '12px' }}>{currentTargetObj.description}</p>
+                  <div style={{ color: '#475569', marginBottom: '6px' }}>{currentTargetObj.organism} • Indication: {currentTargetObj.indication}</div>
+                  <p style={{ margin: 0, color: '#1e293b', fontSize: '12px' }}>{currentTargetObj.description}</p>
                 </div>
               )}
             </div>
 
             {/* Run Docking Action Card */}
-            <div style={{ backgroundColor: '#161b22', padding: '16px', borderRadius: '8px', border: '1px solid #30363d', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div style={{ backgroundColor: '#ffffff', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
-                <h4 style={{ margin: '0 0 10px', color: '#fff', fontSize: '15px' }}>Docking Parameters</h4>
+                <h4 style={{ margin: '0 0 10px', color: '#0f172a', fontSize: '15px' }}>Docking Parameters</h4>
                 <div style={{ marginBottom: '10px' }}>
-                  <label style={{ fontSize: '12px', color: '#8b949e', display: 'block', marginBottom: '4px' }}>
+                  <label style={{ fontSize: '12px', color: '#475569', display: 'block', marginBottom: '4px' }}>
                     Search Exhaustiveness:
                   </label>
                   <select
                     value={exhaustiveness}
                     onChange={(e) => setExhaustiveness(Number(e.target.value))}
-                    style={{ width: '100%', padding: '6px', backgroundColor: '#0d1117', color: '#fff', border: '1px solid #30363d', borderRadius: '4px' }}
+                    style={{ width: '100%', padding: '6px', backgroundColor: '#f8fafc', color: '#0f172a', border: '1px solid #e2e8f0', borderRadius: '4px' }}
                   >
                     <option value={4}>Fast Screening (Exhaustiveness: 4)</option>
                     <option value={8}>Standard Precision (Exhaustiveness: 8)</option>
@@ -814,13 +813,13 @@ const MolecularLab: React.FC = () => {
                   </select>
                 </div>
                 <div>
-                  <label style={{ fontSize: '12px', color: '#8b949e', display: 'block', marginBottom: '4px' }}>
+                  <label style={{ fontSize: '12px', color: '#475569', display: 'block', marginBottom: '4px' }}>
                     Binding Modes to Keep:
                   </label>
                   <select
                     value={numModes}
                     onChange={(e) => setNumModes(Number(e.target.value))}
-                    style={{ width: '100%', padding: '6px', backgroundColor: '#0d1117', color: '#fff', border: '1px solid #30363d', borderRadius: '4px' }}
+                    style={{ width: '100%', padding: '6px', backgroundColor: '#f8fafc', color: '#0f172a', border: '1px solid #e2e8f0', borderRadius: '4px' }}
                   >
                     <option value={3}>Top 3 Modes</option>
                     <option value={5}>Top 5 Modes</option>
@@ -835,8 +834,7 @@ const MolecularLab: React.FC = () => {
                 style={{
                   width: '100%',
                   padding: '12px',
-                  backgroundColor: '#00ffff',
-                  color: '#000',
+                  backgroundColor: '#0d9488', color: '#ffffff',
                   fontWeight: 'bold',
                   fontSize: '15px',
                   border: 'none',
@@ -853,13 +851,13 @@ const MolecularLab: React.FC = () => {
 
           {/* Pre-Dock Target & Ligand 3D Preview (Shown before docking execution) */}
           {!dockingResult && (
-            <div style={{ backgroundColor: '#161b22', padding: '16px', borderRadius: '8px', border: '1px solid #30363d', marginBottom: '20px' }}>
+            <div style={{ backgroundColor: '#ffffff', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
                 <div>
-                  <h4 style={{ margin: 0, color: '#00ffff', fontSize: '15px' }}>
+                  <h4 style={{ margin: 0, color: '#0d9488', fontSize: '15px' }}>
                     🌐 Target Receptor & Ligand 3D Preview ({selectedTarget} - {currentTargetObj?.name})
                   </h4>
-                  <p style={{ margin: '2px 0 0', color: '#8b949e', fontSize: '12px' }}>
+                  <p style={{ margin: '2px 0 0', color: '#475569', fontSize: '12px' }}>
                     Pre-docking preview of active site receptor pocket with live ligand conformer. Click &apos;🚀 Execute Vina Docking&apos; to run conformational simulation.
                   </p>
                 </div>
@@ -891,7 +889,7 @@ const MolecularLab: React.FC = () => {
                 styleMode={viewerStyle}
                 height="450px"
               />
-              <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#8b949e', flexWrap: 'wrap', gap: '6px' }}>
+              <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#475569', flexWrap: 'wrap', gap: '6px' }}>
                 <span>🎨 Spectrum: Target Receptor ({selectedTarget})</span>
                 <span>🟢 Green Sticks: Live Ligand Conformer ({instantProps?.formula || 'Ligand'})</span>
               </div>
@@ -902,7 +900,7 @@ const MolecularLab: React.FC = () => {
           {dockingResult && (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '20px' }}>
               {/* Dual Viewer: 3Dmol.js WebGL & PyMOL High-Res Render */}
-              <div style={{ backgroundColor: '#161b22', padding: '16px', borderRadius: '8px', border: '1px solid #30363d' }}>
+              <div style={{ backgroundColor: '#ffffff', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
                   <div style={{ display: 'flex', gap: '6px' }}>
                     <button
@@ -973,7 +971,7 @@ const MolecularLab: React.FC = () => {
                       styleMode={viewerStyle}
                       height="450px"
                     />
-                    <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#8b949e' }}>
+                    <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#475569' }}>
                       <span>🎨 Spectrum Cartoon: Target Protein ({dockingResult.target})</span>
                       <span>🟢 Green Sticks: Docked Ligand Pose #{selectedPoseIdx + 1} ({activePose?.affinity_kcal_mol} kcal/mol)</span>
                     </div>
@@ -982,7 +980,7 @@ const MolecularLab: React.FC = () => {
                   <div>
                     {dockingPymolResult ? (
                       <div>
-                        <div style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden', border: '1px solid #30363d', backgroundColor: '#0d1117' }}>
+                        <div style={{ position: 'relative', borderRadius: '8px', overflow: 'hidden', border: '1px solid #e2e8f0', backgroundColor: '#f8fafc' }}>
                           <img
                             src={`data:image/png;base64,${dockingPymolResult.image_base64}`}
                             alt="PyMOL Docked Pose Render"
@@ -995,7 +993,7 @@ const MolecularLab: React.FC = () => {
                               style={{
                                 padding: '6px 12px',
                                 backgroundColor: '#1f6feb',
-                                color: '#fff',
+                                color: '#0f172a',
                                 borderRadius: '4px',
                                 textDecoration: 'none',
                                 fontSize: '12px',
@@ -1010,7 +1008,7 @@ const MolecularLab: React.FC = () => {
                               style={{
                                 padding: '6px 12px',
                                 backgroundColor: '#238636',
-                                color: '#fff',
+                                color: '#0f172a',
                                 borderRadius: '4px',
                                 textDecoration: 'none',
                                 fontSize: '12px',
@@ -1023,17 +1021,17 @@ const MolecularLab: React.FC = () => {
                         </div>
 
                         {/* PyMOL Geometric Contacts & Pocket Residues */}
-                        <div style={{ marginTop: '14px', backgroundColor: '#0d1117', padding: '12px', borderRadius: '6px' }}>
+                        <div style={{ marginTop: '14px', backgroundColor: '#f8fafc', padding: '12px', borderRadius: '6px' }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '13px' }}>
-                            <strong style={{ color: '#00ffff' }}>Binding Pocket Residues ({dockingPymolResult.pocket_residues_count})</strong>
-                            <span style={{ color: '#8b949e' }}>Radius: {dockingPymolResult.pocket_radius_angstrom} Å</span>
+                            <strong style={{ color: '#0d9488' }}>Binding Pocket Residues ({dockingPymolResult.pocket_residues_count})</strong>
+                            <span style={{ color: '#475569' }}>Radius: {dockingPymolResult.pocket_radius_angstrom} Å</span>
                           </div>
                           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginBottom: '12px' }}>
                             {dockingPymolResult.pocket_residues.map((r) => (
                               <span
                                 key={r.label}
                                 style={{
-                                  backgroundColor: '#21262d',
+                                  backgroundColor: '#f1f5f9',
                                   padding: '2px 8px',
                                   borderRadius: '4px',
                                   fontSize: '11px',
@@ -1053,7 +1051,7 @@ const MolecularLab: React.FC = () => {
                           {dockingPymolResult.geometric_contacts.length > 0 ? (
                             <table style={{ width: '100%', fontSize: '11px', borderCollapse: 'collapse', fontFamily: 'monospace' }}>
                               <thead>
-                                <tr style={{ color: '#8b949e', borderBottom: '1px solid #30363d', textAlign: 'left' }}>
+                                <tr style={{ color: '#475569', borderBottom: '1px solid #e2e8f0', textAlign: 'left' }}>
                                   <th style={{ padding: '4px' }}>Ligand Atom</th>
                                   <th style={{ padding: '4px' }}>Pocket Residue</th>
                                   <th style={{ padding: '4px' }}>Receptor Atom</th>
@@ -1066,31 +1064,30 @@ const MolecularLab: React.FC = () => {
                                   <tr key={i} style={{ borderBottom: '1px solid #21262d' }}>
                                     <td style={{ padding: '4px', color: '#ffff00' }}>{c.ligand_atom} ({c.ligand_element})</td>
                                     <td style={{ padding: '4px', color: '#79c0ff' }}>{c.receptor_residue}</td>
-                                    <td style={{ padding: '4px', color: '#c9d1d9' }}>{c.receptor_atom} ({c.receptor_element})</td>
+                                    <td style={{ padding: '4px', color: '#1e293b' }}>{c.receptor_atom} ({c.receptor_element})</td>
                                     <td style={{ padding: '4px', color: '#00ff88', fontWeight: 'bold' }}>{c.distance_angstrom} Å</td>
-                                    <td style={{ padding: '4px', color: '#8b949e' }}>{c.contact_type}</td>
+                                    <td style={{ padding: '4px', color: '#475569' }}>{c.contact_type}</td>
                                   </tr>
                                 ))}
                               </tbody>
                             </table>
                           ) : (
-                            <div style={{ fontSize: '12px', color: '#8b949e' }}>No polar heteroatom contacts detected under {dockingPymolResult.contact_cutoff_angstrom} Å.</div>
+                            <div style={{ fontSize: '12px', color: '#475569' }}>No polar heteroatom contacts detected under {dockingPymolResult.contact_cutoff_angstrom} Å.</div>
                           )}
-                          <div style={{ marginTop: '8px', fontSize: '11px', color: '#8b949e', fontStyle: 'italic' }}>
+                          <div style={{ marginTop: '8px', fontSize: '11px', color: '#475569', fontStyle: 'italic' }}>
                             * Note: Geometrically detected proximity distances. Does not imply chemically validated bonding.
                           </div>
                         </div>
                       </div>
                     ) : (
-                      <div style={{ textAlign: 'center', padding: '40px', color: '#8b949e' }}>
+                      <div style={{ textAlign: 'center', padding: '40px', color: '#475569' }}>
                         <p>Generate high-resolution PyMOL ray-trace and session for Mode #{selectedPoseIdx + 1}:</p>
                         <button
                           onClick={handleRenderDockedPoseWithPyMOL}
                           disabled={loading}
                           style={{
                             padding: '10px 20px',
-                            backgroundColor: '#00ffff',
-                            color: '#000',
+                            backgroundColor: '#0d9488', color: '#ffffff',
                             border: 'none',
                             borderRadius: '6px',
                             fontWeight: 'bold',
@@ -1106,22 +1103,22 @@ const MolecularLab: React.FC = () => {
               </div>
 
               {/* Poses Table & Binding Affinity */}
-              <div style={{ backgroundColor: '#161b22', padding: '16px', borderRadius: '8px', border: '1px solid #30363d', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ marginBottom: '14px', backgroundColor: '#0d1117', padding: '12px', borderRadius: '6px', textAlign: 'center', borderLeft: '4px solid #00ffff' }}>
-                  <div style={{ fontSize: '12px', color: '#8b949e' }}>Best Predicted Binding Affinity</div>
-                  <div style={{ fontSize: '24px', color: '#00ffff', fontWeight: 'bold' }}>
-                    {dockingResult.best_affinity_kcal_mol} <span style={{ fontSize: '14px', color: '#8b949e' }}>kcal/mol</span>
+              <div style={{ backgroundColor: '#ffffff', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ marginBottom: '14px', backgroundColor: '#f8fafc', padding: '12px', borderRadius: '6px', textAlign: 'center', borderLeft: '4px solid #00ffff' }}>
+                  <div style={{ fontSize: '12px', color: '#475569' }}>Best Predicted Binding Affinity</div>
+                  <div style={{ fontSize: '24px', color: '#0d9488', fontWeight: 'bold' }}>
+                    {dockingResult.best_affinity_kcal_mol} <span style={{ fontSize: '14px', color: '#475569' }}>kcal/mol</span>
                   </div>
                   <div style={{ fontSize: '12px', color: '#00ff88', marginTop: '2px' }}>
                     Est. Affinity ($K_i$): ~{estimateKi(dockingResult.best_affinity_kcal_mol)}
                   </div>
                 </div>
 
-                <h4 style={{ margin: '0 0 8px', fontSize: '14px', color: '#fff' }}>Docked Conformation Modes</h4>
-                <div style={{ flex: 1, overflowY: 'auto', border: '1px solid #30363d', borderRadius: '4px' }}>
+                <h4 style={{ margin: '0 0 8px', fontSize: '14px', color: '#0f172a' }}>Docked Conformation Modes</h4>
+                <div style={{ flex: 1, overflowY: 'auto', border: '1px solid #e2e8f0', borderRadius: '4px' }}>
                   <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
                     <thead>
-                      <tr style={{ backgroundColor: '#21262d', textAlign: 'left', color: '#8b949e' }}>
+                      <tr style={{ backgroundColor: '#f1f5f9', textAlign: 'left', color: '#475569' }}>
                         <th style={{ padding: '6px' }}>Mode</th>
                         <th style={{ padding: '6px' }}>Affinity</th>
                         <th style={{ padding: '6px' }}>RMSD l.b.</th>
@@ -1138,10 +1135,10 @@ const MolecularLab: React.FC = () => {
                           }}
                         >
                           <td style={{ padding: '6px', fontWeight: 'bold' }}>#{p.mode}</td>
-                          <td style={{ padding: '6px', color: '#00ffff', fontWeight: 'bold' }}>
+                          <td style={{ padding: '6px', color: '#0d9488', fontWeight: 'bold' }}>
                             {p.affinity_kcal_mol}
                           </td>
-                          <td style={{ padding: '6px', color: '#8b949e' }}>{p.rmsd_lower_bound} Å</td>
+                          <td style={{ padding: '6px', color: '#475569' }}>{p.rmsd_lower_bound} Å</td>
                           <td style={{ padding: '6px' }}>
                             <button
                               onClick={() => {
@@ -1174,7 +1171,7 @@ const MolecularLab: React.FC = () => {
                     marginTop: '12px',
                     padding: '8px',
                     backgroundColor: '#1f6feb',
-                    color: '#fff',
+                    color: '#0f172a',
                     border: 'none',
                     borderRadius: '4px',
                     cursor: loading ? 'not-allowed' : 'pointer',
@@ -1197,9 +1194,9 @@ const MolecularLab: React.FC = () => {
                   style={{
                     marginTop: '8px',
                     padding: '8px',
-                    backgroundColor: '#21262d',
-                    color: '#c9d1d9',
-                    border: '1px solid #30363d',
+                    backgroundColor: '#f1f5f9',
+                    color: '#1e293b',
+                    border: '1px solid #e2e8f0',
                     borderRadius: '4px',
                     cursor: 'pointer',
                     fontSize: '12px',
@@ -1217,14 +1214,14 @@ const MolecularLab: React.FC = () => {
       {engineMode === 'visualization' && (
         <div>
           {/* Controls Bar */}
-          <div style={{ backgroundColor: '#161b22', padding: '16px', borderRadius: '8px', border: '1px solid #30363d', marginBottom: '20px' }}>
+          <div style={{ backgroundColor: '#ffffff', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '14px', alignItems: 'end' }}>
               <div>
-                <label style={{ fontSize: '12px', color: '#8b949e', display: 'block', marginBottom: '4px' }}>Target Receptor:</label>
+                <label style={{ fontSize: '12px', color: '#475569', display: 'block', marginBottom: '4px' }}>Target Receptor:</label>
                 <select
                   value={selectedTarget}
                   onChange={(e) => setSelectedTarget(e.target.value)}
-                  style={{ width: '100%', padding: '8px', backgroundColor: '#0d1117', color: '#fff', border: '1px solid #30363d', borderRadius: '4px' }}
+                  style={{ width: '100%', padding: '8px', backgroundColor: '#f8fafc', color: '#0f172a', border: '1px solid #e2e8f0', borderRadius: '4px' }}
                 >
                   {targets.map((t) => (
                     <option key={t.pdb_id} value={t.pdb_id}>{t.pdb_id} - {t.name}</option>
@@ -1233,11 +1230,11 @@ const MolecularLab: React.FC = () => {
               </div>
 
               <div>
-                <label style={{ fontSize: '12px', color: '#8b949e', display: 'block', marginBottom: '4px' }}>Rendering Style:</label>
+                <label style={{ fontSize: '12px', color: '#475569', display: 'block', marginBottom: '4px' }}>Rendering Style:</label>
                 <select
                   value={pymolStyle}
                   onChange={(e) => setPymolStyle(e.target.value as any)}
-                  style={{ width: '100%', padding: '8px', backgroundColor: '#0d1117', color: '#fff', border: '1px solid #30363d', borderRadius: '4px' }}
+                  style={{ width: '100%', padding: '8px', backgroundColor: '#f8fafc', color: '#0f172a', border: '1px solid #e2e8f0', borderRadius: '4px' }}
                 >
                   <option value="cartoon">Cartoon (Secondary Structure)</option>
                   <option value="surface">Transparent Surface</option>
@@ -1247,24 +1244,24 @@ const MolecularLab: React.FC = () => {
               </div>
 
               <div>
-                <label style={{ fontSize: '12px', color: '#8b949e', display: 'block', marginBottom: '4px' }}>Pocket Radius (Å):</label>
+                <label style={{ fontSize: '12px', color: '#475569', display: 'block', marginBottom: '4px' }}>Pocket Radius (Å):</label>
                 <input
                   type="number"
                   step="0.5"
                   value={pocketRadius}
                   onChange={(e) => setPocketRadius(Number(e.target.value))}
-                  style={{ width: '100%', padding: '8px', backgroundColor: '#0d1117', color: '#fff', border: '1px solid #30363d', borderRadius: '4px' }}
+                  style={{ width: '100%', padding: '8px', backgroundColor: '#f8fafc', color: '#0f172a', border: '1px solid #e2e8f0', borderRadius: '4px' }}
                 />
               </div>
 
               <div>
-                <label style={{ fontSize: '12px', color: '#8b949e', display: 'block', marginBottom: '4px' }}>Contact Cutoff (Å):</label>
+                <label style={{ fontSize: '12px', color: '#475569', display: 'block', marginBottom: '4px' }}>Contact Cutoff (Å):</label>
                 <input
                   type="number"
                   step="0.5"
                   value={contactCutoff}
                   onChange={(e) => setContactCutoff(Number(e.target.value))}
-                  style={{ width: '100%', padding: '8px', backgroundColor: '#0d1117', color: '#fff', border: '1px solid #30363d', borderRadius: '4px' }}
+                  style={{ width: '100%', padding: '8px', backgroundColor: '#f8fafc', color: '#0f172a', border: '1px solid #e2e8f0', borderRadius: '4px' }}
                 />
               </div>
 
@@ -1273,8 +1270,7 @@ const MolecularLab: React.FC = () => {
                 disabled={loading}
                 style={{
                   padding: '10px',
-                  backgroundColor: '#00ffff',
-                  color: '#000',
+                  backgroundColor: '#0d9488', color: '#ffffff',
                   fontWeight: 'bold',
                   border: 'none',
                   borderRadius: '4px',
@@ -1291,15 +1287,15 @@ const MolecularLab: React.FC = () => {
           {pymolResult && (
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '20px' }}>
               {/* Main Image View */}
-              <div style={{ backgroundColor: '#161b22', padding: '16px', borderRadius: '8px', border: '1px solid #30363d' }}>
+              <div style={{ backgroundColor: '#ffffff', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                  <h3 style={{ margin: 0, color: '#00ffff', fontSize: '16px' }}>
+                  <h3 style={{ margin: 0, color: '#0d9488', fontSize: '16px' }}>
                     {pymolResult.target} High-Resolution 3D Render ({pymolResult.style})
                   </h3>
-                  <span style={{ fontSize: '12px', color: '#8b949e' }}>{pymolResult.resolution} • {pymolResult.software_version}</span>
+                  <span style={{ fontSize: '12px', color: '#475569' }}>{pymolResult.resolution} • {pymolResult.software_version}</span>
                 </div>
 
-                <div style={{ borderRadius: '8px', overflow: 'hidden', border: '1px solid #30363d', backgroundColor: '#0d1117' }}>
+                <div style={{ borderRadius: '8px', overflow: 'hidden', border: '1px solid #e2e8f0', backgroundColor: '#f8fafc' }}>
                   <img
                     src={`data:image/png;base64,${pymolResult.image_base64}`}
                     alt="PyMOL Rendering"
@@ -1308,7 +1304,7 @@ const MolecularLab: React.FC = () => {
                 </div>
 
                 <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div style={{ fontSize: '12px', color: '#8b949e' }}>
+                  <div style={{ fontSize: '12px', color: '#475569' }}>
                     Receptor Atoms: <strong>{pymolResult.receptor_atoms}</strong> | Ligand Atoms: <strong>{pymolResult.ligand_atoms}</strong>
                   </div>
                   <div style={{ display: 'flex', gap: '8px' }}>
@@ -1318,7 +1314,7 @@ const MolecularLab: React.FC = () => {
                       style={{
                         padding: '6px 12px',
                         backgroundColor: '#1f6feb',
-                        color: '#fff',
+                        color: '#0f172a',
                         borderRadius: '4px',
                         textDecoration: 'none',
                         fontSize: '12px',
@@ -1333,7 +1329,7 @@ const MolecularLab: React.FC = () => {
                       style={{
                         padding: '6px 12px',
                         backgroundColor: '#238636',
-                        color: '#fff',
+                        color: '#0f172a',
                         borderRadius: '4px',
                         textDecoration: 'none',
                         fontSize: '12px',
@@ -1347,32 +1343,32 @@ const MolecularLab: React.FC = () => {
               </div>
 
               {/* Side Panel: Pocket Residues & Geometric Contacts */}
-              <div style={{ backgroundColor: '#161b22', padding: '16px', borderRadius: '8px', border: '1px solid #30363d', display: 'flex', flexDirection: 'column' }}>
-                <h4 style={{ margin: '0 0 10px', color: '#00ffff', fontSize: '14px' }}>
+              <div style={{ backgroundColor: '#ffffff', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column' }}>
+                <h4 style={{ margin: '0 0 10px', color: '#0d9488', fontSize: '14px' }}>
                   Binding Pocket Residues ({pymolResult.pocket_residues_count})
                 </h4>
-                <div style={{ maxHeight: '160px', overflowY: 'auto', marginBottom: '14px', border: '1px solid #30363d', borderRadius: '4px', padding: '8px', backgroundColor: '#0d1117' }}>
+                <div style={{ maxHeight: '160px', overflowY: 'auto', marginBottom: '14px', border: '1px solid #e2e8f0', borderRadius: '4px', padding: '8px', backgroundColor: '#f8fafc' }}>
                   {pymolResult.pocket_residues.length > 0 ? (
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
                       {pymolResult.pocket_residues.map((r) => (
-                        <span key={r.label} style={{ backgroundColor: '#21262d', padding: '2px 8px', borderRadius: '4px', fontSize: '11px', color: '#79c0ff' }}>
+                        <span key={r.label} style={{ backgroundColor: '#f1f5f9', padding: '2px 8px', borderRadius: '4px', fontSize: '11px', color: '#79c0ff' }}>
                           {r.label}
                         </span>
                       ))}
                     </div>
                   ) : (
-                    <div style={{ fontSize: '12px', color: '#8b949e' }}>No localized pocket residues. (Receptor-only view)</div>
+                    <div style={{ fontSize: '12px', color: '#475569' }}>No localized pocket residues. (Receptor-only view)</div>
                   )}
                 </div>
 
                 <h4 style={{ margin: '0 0 8px', color: '#00ff88', fontSize: '14px' }}>
                   Geometric Distance Contacts ({pymolResult.geometric_contacts_count})
                 </h4>
-                <div style={{ flex: 1, overflowY: 'auto', border: '1px solid #30363d', borderRadius: '4px', padding: '6px', backgroundColor: '#0d1117' }}>
+                <div style={{ flex: 1, overflowY: 'auto', border: '1px solid #e2e8f0', borderRadius: '4px', padding: '6px', backgroundColor: '#f8fafc' }}>
                   {pymolResult.geometric_contacts.length > 0 ? (
                     <table style={{ width: '100%', fontSize: '11px', borderCollapse: 'collapse', fontFamily: 'monospace' }}>
                       <thead>
-                        <tr style={{ color: '#8b949e', borderBottom: '1px solid #30363d', textAlign: 'left' }}>
+                        <tr style={{ color: '#475569', borderBottom: '1px solid #e2e8f0', textAlign: 'left' }}>
                           <th style={{ padding: '4px' }}>Residue</th>
                           <th style={{ padding: '4px' }}>Dist (Å)</th>
                           <th style={{ padding: '4px' }}>Pair</th>
@@ -1383,16 +1379,16 @@ const MolecularLab: React.FC = () => {
                           <tr key={i} style={{ borderBottom: '1px solid #21262d' }}>
                             <td style={{ padding: '4px', color: '#79c0ff' }}>{c.receptor_residue}</td>
                             <td style={{ padding: '4px', color: '#00ff88', fontWeight: 'bold' }}>{c.distance_angstrom}</td>
-                            <td style={{ padding: '4px', color: '#8b949e' }}>{c.ligand_atom}-{c.receptor_atom}</td>
+                            <td style={{ padding: '4px', color: '#475569' }}>{c.ligand_atom}-{c.receptor_atom}</td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
                   ) : (
-                    <div style={{ fontSize: '12px', color: '#8b949e' }}>No geometric contacts detected within {pymolResult.contact_cutoff_angstrom} Å.</div>
+                    <div style={{ fontSize: '12px', color: '#475569' }}>No geometric contacts detected within {pymolResult.contact_cutoff_angstrom} Å.</div>
                   )}
                 </div>
-                <div style={{ marginTop: '10px', fontSize: '11px', color: '#8b949e', fontStyle: 'italic' }}>
+                <div style={{ marginTop: '10px', fontSize: '11px', color: '#475569', fontStyle: 'italic' }}>
                   * Geometrically detected spatial proximity. Not chemically validated bonding.
                 </div>
               </div>
@@ -1405,8 +1401,8 @@ const MolecularLab: React.FC = () => {
       {engineMode === 'cheminformatics' && properties && (
         <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: '20px' }}>
           {/* 2D Structure Card */}
-          <div style={{ backgroundColor: '#161b22', padding: '16px', borderRadius: '8px', border: '1px solid #30363d', textAlign: 'center' }}>
-            <h3 style={{ color: '#00ffff', margin: '0 0 12px', fontSize: '16px' }}>2D Chemical Depiction</h3>
+          <div style={{ backgroundColor: '#ffffff', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0', textAlign: 'center' }}>
+            <h3 style={{ color: '#0d9488', margin: '0 0 12px', fontSize: '16px' }}>2D Chemical Depiction</h3>
             {svgUrl ? (
               <div style={{ backgroundColor: '#ffffff', padding: '10px', borderRadius: '6px', display: 'flex', justifyContent: 'center' }}>
                 <img src={svgUrl} alt="Molecule Depiction" style={{ maxWidth: '100%', height: 'auto' }} />
@@ -1417,14 +1413,14 @@ const MolecularLab: React.FC = () => {
 
             <div style={{ marginTop: '14px', textAlign: 'left', fontSize: '13px', color: '#aaa' }}>
               <div><strong>SMILES:</strong> <code style={{ color: '#79c0ff' }}>{properties.smiles}</code></div>
-              <div style={{ marginTop: '4px' }}><strong>Hill Formula:</strong> <span style={{ color: '#fff' }}>{properties.formula}</span></div>
-              <div style={{ marginTop: '4px' }}><strong>Exact MW:</strong> <span style={{ color: '#fff' }}>{properties.molecular_weight} g/mol</span></div>
+              <div style={{ marginTop: '4px' }}><strong>Hill Formula:</strong> <span style={{ color: '#0f172a' }}>{properties.formula}</span></div>
+              <div style={{ marginTop: '4px' }}><strong>Exact MW:</strong> <span style={{ color: '#0f172a' }}>{properties.molecular_weight} g/mol</span></div>
             </div>
           </div>
 
           {/* Properties & Conformer Detail */}
-          <div style={{ backgroundColor: '#161b22', padding: '16px', borderRadius: '8px', border: '1px solid #30363d' }}>
-            <div style={{ display: 'flex', borderBottom: '1px solid #30363d', marginBottom: '16px', gap: '10px' }}>
+          <div style={{ backgroundColor: '#ffffff', padding: '16px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+            <div style={{ display: 'flex', borderBottom: '1px solid #e2e8f0', marginBottom: '16px', gap: '10px' }}>
               <button
                 onClick={() => setActiveChemTab('properties')}
                 style={{
@@ -1472,35 +1468,35 @@ const MolecularLab: React.FC = () => {
             {activeChemTab === 'properties' && (
               <div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '20px' }}>
-                  <div style={{ backgroundColor: '#0d1117', padding: '12px', borderRadius: '6px' }}>
-                    <div style={{ fontSize: '12px', color: '#888' }}>Molecular Weight</div>
-                    <div style={{ fontSize: '20px', color: '#00ffff', fontWeight: 'bold' }}>{properties.molecular_weight} <span style={{ fontSize: '13px', color: '#aaa' }}>g/mol</span></div>
+                  <div style={{ backgroundColor: '#f8fafc', padding: '12px', borderRadius: '6px' }}>
+                    <div style={{ fontSize: '12px', color: '#64748b' }}>Molecular Weight</div>
+                    <div style={{ fontSize: '20px', color: '#0d9488', fontWeight: 'bold' }}>{properties.molecular_weight} <span style={{ fontSize: '13px', color: '#aaa' }}>g/mol</span></div>
                   </div>
-                  <div style={{ backgroundColor: '#0d1117', padding: '12px', borderRadius: '6px' }}>
-                    <div style={{ fontSize: '12px', color: '#888' }}>Calculated LogP</div>
+                  <div style={{ backgroundColor: '#f8fafc', padding: '12px', borderRadius: '6px' }}>
+                    <div style={{ fontSize: '12px', color: '#64748b' }}>Calculated LogP</div>
                     <div style={{ fontSize: '20px', color: properties.logp <= 5 ? '#00ff88' : '#ffaa00', fontWeight: 'bold' }}>{properties.logp}</div>
                   </div>
-                  <div style={{ backgroundColor: '#0d1117', padding: '12px', borderRadius: '6px' }}>
-                    <div style={{ fontSize: '12px', color: '#888' }}>TPSA</div>
-                    <div style={{ fontSize: '20px', color: '#fff', fontWeight: 'bold' }}>{properties.tpsa} <span style={{ fontSize: '13px', color: '#aaa' }}>Å²</span></div>
+                  <div style={{ backgroundColor: '#f8fafc', padding: '12px', borderRadius: '6px' }}>
+                    <div style={{ fontSize: '12px', color: '#64748b' }}>TPSA</div>
+                    <div style={{ fontSize: '20px', color: '#0f172a', fontWeight: 'bold' }}>{properties.tpsa} <span style={{ fontSize: '13px', color: '#aaa' }}>Å²</span></div>
                   </div>
-                  <div style={{ backgroundColor: '#0d1117', padding: '12px', borderRadius: '6px' }}>
-                    <div style={{ fontSize: '12px', color: '#888' }}>H-Bond Donors (HBD)</div>
-                    <div style={{ fontSize: '18px', color: '#fff' }}>{properties.hbd}</div>
+                  <div style={{ backgroundColor: '#f8fafc', padding: '12px', borderRadius: '6px' }}>
+                    <div style={{ fontSize: '12px', color: '#64748b' }}>H-Bond Donors (HBD)</div>
+                    <div style={{ fontSize: '18px', color: '#0f172a' }}>{properties.hbd}</div>
                   </div>
-                  <div style={{ backgroundColor: '#0d1117', padding: '12px', borderRadius: '6px' }}>
-                    <div style={{ fontSize: '12px', color: '#888' }}>H-Bond Acceptors (HBA)</div>
-                    <div style={{ fontSize: '18px', color: '#fff' }}>{properties.hba}</div>
+                  <div style={{ backgroundColor: '#f8fafc', padding: '12px', borderRadius: '6px' }}>
+                    <div style={{ fontSize: '12px', color: '#64748b' }}>H-Bond Acceptors (HBA)</div>
+                    <div style={{ fontSize: '18px', color: '#0f172a' }}>{properties.hba}</div>
                   </div>
-                  <div style={{ backgroundColor: '#0d1117', padding: '12px', borderRadius: '6px' }}>
-                    <div style={{ fontSize: '12px', color: '#888' }}>Rotatable Bonds</div>
-                    <div style={{ fontSize: '18px', color: '#fff' }}>{properties.rotatable_bonds}</div>
+                  <div style={{ backgroundColor: '#f8fafc', padding: '12px', borderRadius: '6px' }}>
+                    <div style={{ fontSize: '12px', color: '#64748b' }}>Rotatable Bonds</div>
+                    <div style={{ fontSize: '18px', color: '#0f172a' }}>{properties.rotatable_bonds}</div>
                   </div>
                 </div>
 
-                <div style={{ backgroundColor: '#0d1117', padding: '14px', borderRadius: '6px', borderLeft: properties.lipinski_pass ? '4px solid #00ff88' : '4px solid #ff4444' }}>
+                <div style={{ backgroundColor: '#f8fafc', padding: '14px', borderRadius: '6px', borderLeft: properties.lipinski_pass ? '4px solid #00ff88' : '4px solid #ff4444' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <h4 style={{ margin: 0, color: '#fff' }}>Lipinski Rule of 5 (Drug-likeness)</h4>
+                    <h4 style={{ margin: 0, color: '#0f172a' }}>Lipinski Rule of 5 (Drug-likeness)</h4>
                     <span
                       style={{
                         padding: '4px 10px',
@@ -1526,13 +1522,13 @@ const MolecularLab: React.FC = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', fontSize: '13px' }}>
                   <span>Total Atoms with Explicit H: <strong>{conformer.atom_count}</strong></span>
                   {conformer.energy_kcal_mol !== undefined && (
-                    <span style={{ color: '#00ffff' }}>Force Field Energy: <strong>{conformer.energy_kcal_mol} kcal/mol</strong></span>
+                    <span style={{ color: '#0d9488' }}>Force Field Energy: <strong>{conformer.energy_kcal_mol} kcal/mol</strong></span>
                   )}
                 </div>
-                <div style={{ maxHeight: '280px', overflowY: 'auto', border: '1px solid #30363d', borderRadius: '4px' }}>
+                <div style={{ maxHeight: '280px', overflowY: 'auto', border: '1px solid #e2e8f0', borderRadius: '4px' }}>
                   <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px', fontFamily: 'monospace' }}>
                     <thead>
-                      <tr style={{ backgroundColor: '#21262d', textAlign: 'left' }}>
+                      <tr style={{ backgroundColor: '#f1f5f9', textAlign: 'left' }}>
                         <th style={{ padding: '6px 10px' }}>#</th>
                         <th style={{ padding: '6px 10px' }}>Element</th>
                         <th style={{ padding: '6px 10px' }}>X (Å)</th>
@@ -1543,8 +1539,8 @@ const MolecularLab: React.FC = () => {
                     <tbody>
                       {conformer.atoms.map((a) => (
                         <tr key={a.index} style={{ borderBottom: '1px solid #21262d' }}>
-                          <td style={{ padding: '5px 10px', color: '#888' }}>{a.index}</td>
-                          <td style={{ padding: '5px 10px', color: '#00ffff', fontWeight: 'bold' }}>{a.symbol}</td>
+                          <td style={{ padding: '5px 10px', color: '#64748b' }}>{a.index}</td>
+                          <td style={{ padding: '5px 10px', color: '#0d9488', fontWeight: 'bold' }}>{a.symbol}</td>
                           <td style={{ padding: '5px 10px' }}>{a.x.toFixed(4)}</td>
                           <td style={{ padding: '5px 10px' }}>{a.y.toFixed(4)}</td>
                           <td style={{ padding: '5px 10px' }}>{a.z.toFixed(4)}</td>
@@ -1559,14 +1555,14 @@ const MolecularLab: React.FC = () => {
             {activeChemTab === 'molblock' && conformer && (
               <pre
                 style={{
-                  backgroundColor: '#0d1117',
+                  backgroundColor: '#f8fafc',
                   padding: '12px',
                   borderRadius: '6px',
                   fontSize: '11px',
                   fontFamily: 'monospace',
                   maxHeight: '300px',
                   overflowY: 'auto',
-                  color: '#c9d1d9',
+                  color: '#1e293b',
                   margin: 0,
                 }}
               >

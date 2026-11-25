@@ -15,35 +15,47 @@ const CreateProjectForm: React.FC = () => {
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
-      setStatus(`Created project ${data.id}`);
+      setStatus(`Registered study record ID #${data.id}`);
+      setName('');
+      setDescription('');
     } catch (err: any) {
       setStatus(`Error: ${err.message}`);
     }
   };
   return (
-    <form onSubmit={handleSubmit} className="mb-4">
-      <div className="mb-2">
-        <label className="block mb-1">Name</label>
+    <form onSubmit={handleSubmit} className="space-y-3">
+      <div>
+        <label className="block text-xs font-semibold text-slate-700 mb-1">Study / Trial Title</label>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          placeholder="e.g. Mpro Protease Inhibitor Lead Optimization"
           required
-          className="p-1 border rounded w-full"
+          className="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-teal-600 focus:border-teal-600"
         />
       </div>
-      <div className="mb-2">
-        <label className="block mb-1">Description</label>
+      <div>
+        <label className="block text-xs font-semibold text-slate-700 mb-1">Clinical Protocol & Objectives</label>
         <textarea
+          rows={2}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="p-1 border rounded w-full"
+          placeholder="Outline primary therapeutic target, lead series, and pharmacology criteria..."
+          className="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-none focus:ring-1 focus:ring-teal-600 focus:border-teal-600"
         />
       </div>
-      <button type="submit" className="bg-cyan-600 text-white px-3 py-1 rounded">
-        Create Project
+      <button
+        type="submit"
+        className="w-full bg-teal-700 hover:bg-teal-800 text-white font-semibold py-2 px-4 rounded-lg text-xs shadow-sm transition-colors"
+      >
+        Register Clinical Study Record
       </button>
-      {status && <p className="mt-2">{status}</p>}
+      {status && (
+        <p className="text-xs font-semibold text-teal-800 bg-teal-50 border border-teal-200 p-2 rounded">
+          {status}
+        </p>
+      )}
     </form>
   );
 };

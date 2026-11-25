@@ -28,7 +28,7 @@ const MolecularViewer3D: React.FC<MolecularViewer3DProps> = ({
     // Clear previous viewer if any
     containerRef.current.innerHTML = '';
 
-    const config = { backgroundColor: '#0d1117' };
+    const config = { backgroundColor: '#0f172a' };
     const viewer = window.$3Dmol.createViewer(containerRef.current, config);
     viewerRef.current = viewer;
 
@@ -91,7 +91,7 @@ const MolecularViewer3D: React.FC<MolecularViewer3DProps> = ({
           position: 'relative',
           borderRadius: '8px',
           overflow: 'hidden',
-          border: '1px solid #30363d',
+          border: '1px solid #cbd5e1',
         }}
       />
       <div
@@ -100,10 +100,11 @@ const MolecularViewer3D: React.FC<MolecularViewer3DProps> = ({
           bottom: '8px',
           right: '8px',
           fontSize: '11px',
-          color: '#8b949e',
-          backgroundColor: '#161b22cc',
-          padding: '2px 8px',
+          color: '#cbd5e1',
+          backgroundColor: 'rgba(15, 23, 42, 0.85)',
+          padding: '3px 8px',
           borderRadius: '4px',
+          border: '1px solid rgba(255,255,255,0.1)',
           pointerEvents: 'none',
         }}
       >
