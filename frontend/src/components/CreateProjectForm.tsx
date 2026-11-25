@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE } from '@/api/config';
 
 const CreateProjectForm: React.FC = () => {
   const [name, setName] = useState('');
@@ -7,7 +8,7 @@ const CreateProjectForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://127.0.0.1:8000/projects/', {
+      const res = await fetch(`${API_BASE}/projects/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, description }),

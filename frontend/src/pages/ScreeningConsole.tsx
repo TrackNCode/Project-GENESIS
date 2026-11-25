@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import MolecularViewer3D from '@/components/MolecularViewer3D';
-
-const API_BASE = 'http://127.0.0.1:8000';
+import { API_BASE } from '@/api/config';
 
 interface LibrarySummary {
   id: string;

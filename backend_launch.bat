@@ -41,7 +41,7 @@ exit /b 1
 
 :run
 echo Starting FastAPI with %PY_CMD% ...
-"%PY_CMD%" -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
+"%PY_CMD%" -m uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
 if %ERRORLEVEL% neq 0 (
     echo.
     echo [ERROR] Backend exited with error code %ERRORLEVEL%.
